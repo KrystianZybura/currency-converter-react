@@ -1,0 +1,30 @@
+.footer {
+    color: aquamarine;
+    background-color: #2d2d2d;
+    text-align: center;
+    padding: 16px;
+    margin-top: auto;
+}
+
+.footer__paragraph {
+    color: white;
+}
+
+.footer__link {
+    color: #13a7ec;
+    text-decoration: none;
+}
+
+.footer__link:focus {
+    outline: 2px solid currentColor;
+}
+
+.footer__link:hover {
+    color: #07f8e4;
+    border-bottom: 1px solid;
+    outline: none;
+}
+
+.footer__link:active {
+    color: #a728b3;
+}
