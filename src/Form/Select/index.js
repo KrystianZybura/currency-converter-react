@@ -11,7 +11,7 @@ const Select = () => (
                 </select>
             </label>
             <label>
-                <span className="form__specialText">→</span>
+                <span className="form__specialText">⟶</span>
                 <select className="form__select" name="form__selectSecondCurrency">
                     <option selected>USD</option>
                     <option>EUR</option>
