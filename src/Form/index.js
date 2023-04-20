@@ -1,23 +1,22 @@
 import "./style.css";
+import WarningMessage from "./WarningMessage";
 import { useState } from "react";
 
 const Form = () => {
-    const [currency, setCurrency] = useState("PLN");
-
+    const [firstCurrency, setCurrency] = useState("PLN");
     const [secondCurrency, setSecondCurrency] = useState("EUR")
 
     const [firstCurrencyMark, setFirstCurrencyMark] = useState("zł");
-
     const [secondCurrencyMark, setSecondCurrencyMark] = useState("€");
 
     const setCurrencyMark = (currency) => {
         switch (currency) {
-            case "PLN":
-                return "zł";
             case "EUR":
                 return "€";
             case "USD":
                 return "$";
+            default:
+                return "zł";
         };
     };
 
@@ -31,8 +30,11 @@ const Form = () => {
         setSecondCurrencyMark(setCurrencyMark(target.value));
     };
 
+    const [identicalCurrencyMarks, validateForm] = useState(false);
+
     const onFormSubmit = (event) => {
         event.preventDefault();
+        validateForm(firstCurrency === secondCurrency ? true : false);
     };
 
     return (
@@ -45,7 +47,7 @@ const Form = () => {
                             <select
                                 className="form__select"
                                 name="form__selectFirstCurrency"
-                                value={currency}
+                                value={firstCurrency}
                                 onChange={onSelectChange}
                             >
                                 <option>PLN</option>
@@ -93,9 +95,7 @@ const Form = () => {
                         <span>{secondCurrencyMark}.</span>
                     </label>
                 </p>
-                <p className={`${firstCurrencyMark === secondCurrencyMark ? "" : "hidden"}`}>
-                    <span className="form__warningMessage">To wychodzi poza możliwości tego kantora.</span>
-                </p>
+                {identicalCurrencyMarks === true ? <WarningMessage /> : ""}
                 <p className="form__paragraph">
                     <button className="form__button">Przelicz!</button>
                 </p>
