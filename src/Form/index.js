@@ -2,16 +2,38 @@ import "./style.css";
 import { useState } from "react";
 
 const Form = () => {
-    const onFormSubmit = (event) => {
-        event.preventDefault();
-    }
     const [currency, setCurrency] = useState("PLN");
-
-    const onSelectChange = ({ target }) => setCurrency(target.value);
 
     const [secondCurrency, setSecondCurrency] = useState("EUR")
 
-    const onSecondSelectChange = ({ target }) => setSecondCurrency(target.value);
+    const [firstCurrencyMark, setFirstCurrencyMark] = useState("zł");
+
+    const [secondCurrencyMark, setSecondCurrencyMark] = useState("€");
+
+    const setCurrencyMark = (currency) => {
+        switch (currency) {
+            case "PLN":
+                return "zł";
+            case "EUR":
+                return "€";
+            case "USD":
+                return "$";
+        };
+    };
+
+    const onSelectChange = ({ target }) => {
+        setCurrency(target.value);
+        setFirstCurrencyMark(setCurrencyMark(target.value));
+    };
+
+    const onSecondSelectChange = ({ target }) => {
+        setSecondCurrency(target.value);
+        setSecondCurrencyMark(setCurrencyMark(target.value));
+    };
+
+    const onFormSubmit = (event) => {
+        event.preventDefault();
+    };
 
     return (
         <form className="form" onSubmit={onFormSubmit}>
@@ -57,7 +79,7 @@ const Form = () => {
                             placeholder="Posiadam.."
                             required
                         />
-                        <span>zł.</span>
+                        <span>{firstCurrencyMark}.</span>
                     </label>
                 </p>
                 <p>
@@ -68,10 +90,10 @@ const Form = () => {
                             type="number"
                             placeholder="Otrzymam.."
                         />
-                        <span>$.</span>
+                        <span>{secondCurrencyMark}.</span>
                     </label>
                 </p>
-                <p className="hidden js-warningMessage">
+                <p className={`${firstCurrencyMark === secondCurrencyMark ? "" : "hidden"}`}>
                     <span className="form__warningMessage">To wychodzi poza możliwości tego kantora.</span>
                 </p>
                 <p className="form__paragraph">
