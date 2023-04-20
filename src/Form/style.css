@@ -74,7 +74,7 @@
     min-width: 130px;
     font-size: 21px;
     text-shadow: #000 1px 1.5px 1px;
-    transition: 0.3;
+    transition: 0.3s;
 }
 
 .form__button:hover {
