@@ -1,10 +1,11 @@
 import "./style.css";
 import WarningMessage from "./WarningMessage";
+import { exchangeRates } from "./ExchangeRates";
 import { useState } from "react";
 
 const Form = () => {
-    const [firstCurrency, setCurrency] = useState("PLN");
-    const [secondCurrency, setSecondCurrency] = useState("EUR")
+    const [firstCurrency, setFirstCurrency] = useState("PLN");
+    const [secondCurrency, setSecondCurrency] = useState("USD");
 
     const [firstCurrencyMark, setFirstCurrencyMark] = useState("zł");
     const [secondCurrencyMark, setSecondCurrencyMark] = useState("€");
@@ -13,15 +14,17 @@ const Form = () => {
         switch (currency) {
             case "EUR":
                 return "€";
+
             case "USD":
                 return "$";
+
             default:
                 return "zł";
         };
     };
 
     const onSelectChange = ({ target }) => {
-        setCurrency(target.value);
+        setFirstCurrency(target.value);
         setFirstCurrencyMark(setCurrencyMark(target.value));
     };
 
@@ -30,11 +33,47 @@ const Form = () => {
         setSecondCurrencyMark(setCurrencyMark(target.value));
     };
 
-    const [identicalCurrencyMarks, validateForm] = useState(false);
+    const [identicalCurrencyMarks, checkForIdenticalMarks] = useState(false);
+
+    const validateForm = () => {
+        checkForIdenticalMarks(firstCurrency === secondCurrency ? true : false);
+    };
+
+    const [amount, setAmount] = useState("");
+
+    const onInputChange = ({ target }) => setAmount(target.value);
+
+    const [result, setResult] = useState("");
+
+    const calculateResult = (amount, { eurToPlnRate, usdToEurRate, usdToPlnRate }) => {
+        switch (`${firstCurrency}/${secondCurrency}`) {
+            case "PLN/EUR":
+                return (amount * eurToPlnRate).toFixed(2);
+
+            case "PLN/USD":
+                return (amount * usdToPlnRate).toFixed(2);
+
+            case "USD/PLN":
+                return (amount / usdToPlnRate).toFixed(2);
+
+            case "USD/EUR":
+                return (amount * usdToEurRate).toFixed(2);
+
+            case "EUR/USD":
+                return (amount / usdToPlnRate).toFixed(2);
+
+            case "EUR/PLN":
+                return (amount / eurToPlnRate).toFixed(2);
+
+            default:
+                return "";
+        }
+    };
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        validateForm(firstCurrency === secondCurrency ? true : false);
+        validateForm();
+        setResult(calculateResult(amount, ...exchangeRates));
     };
 
     return (
@@ -80,6 +119,8 @@ const Form = () => {
                             step="0.01"
                             placeholder="Posiadam.."
                             required
+                            value={amount}
+                            onChange={onInputChange}
                         />
                         <span>{firstCurrencyMark}.</span>
                     </label>
@@ -91,6 +132,8 @@ const Form = () => {
                             className="form__input"
                             type="number"
                             placeholder="Otrzymam.."
+                            value={result}
+                            onChange={() => calculateResult(amount)}
                         />
                         <span>{secondCurrencyMark}.</span>
                     </label>
