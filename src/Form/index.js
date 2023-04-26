@@ -3,7 +3,7 @@ import WarningMessage from "./WarningMessage";
 import { exchangeRates } from "./ExchangeRates";
 import { useState } from "react";
 
-const Form = () => {
+const Form = ({ legend, specialText }) => {
     const [firstCurrency, setFirstCurrency] = useState("PLN");
     const [secondCurrency, setSecondCurrency] = useState("USD");
 
@@ -79,7 +79,7 @@ const Form = () => {
     return (
         <form className="form" onSubmit={onFormSubmit}>
             <fieldset className="form__fieldset">
-                <legend className="form__legend">Kantor</legend>
+                <legend className="form__legend">{legend}</legend>
                 <div className="form__selectContainer">
                     <p>
                         <label>
@@ -95,7 +95,7 @@ const Form = () => {
                             </select>
                         </label>
                         <label>
-                            <span className="form__specialText">⟶</span>
+                            <span className="form__specialText">{specialText}</span>
                             <select
                                 className="form__select"
                                 name="form__selectSecondCurrency"

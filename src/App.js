@@ -7,13 +7,21 @@ import Container from "./Container";
 function App() {
   return (
     <Container>
-      <Header />
+      <Header
+        title="Kalkulator walut"
+      />
       <Main
         body={
-          <Form />
+          <Form 
+            legend={"Kantor"}
+            specialText={"------->"}
+          />
         }
       />
-      <Footer />
+      <Footer
+        copyright={"Copyright © 2023 "}
+        exampleMail={"Example_email@gmail.com"}
+      />
     </Container>
   );
 }
