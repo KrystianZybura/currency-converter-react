@@ -50,22 +50,22 @@ const Form = ({ legend, specialText }) => {
 
         switch (currencyPair) {
             case "PLN/EUR":
-                return amount * eurToPlnRate;
+                return amount / eurToPlnRate;
 
             case "PLN/USD":
-                return amount * usdToPlnRate;
+                return amount / usdToPlnRate;
 
             case "USD/PLN":
-                return amount / usdToPlnRate;
+                return amount * usdToPlnRate;
 
             case "USD/EUR":
                 return amount * usdToEurRate;
 
             case "EUR/USD":
-                return amount / usdToPlnRate;
+                return amount / usdToEurRate;
 
             case "EUR/PLN":
-                return amount / eurToPlnRate;
+                return amount * eurToPlnRate;
 
             default:
                 return NaN;
