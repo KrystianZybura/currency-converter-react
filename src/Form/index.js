@@ -46,34 +46,36 @@ const Form = ({ legend, specialText }) => {
     const [result, setResult] = useState("");
 
     const calculateResult = (amount, { eurToPlnRate, usdToEurRate, usdToPlnRate }) => {
-        switch (`${firstCurrency}/${secondCurrency}`) {
+        const currencyPair = `${firstCurrency}/${secondCurrency}`;
+
+        switch (currencyPair) {
             case "PLN/EUR":
-                return (amount * eurToPlnRate).toFixed(2);
+                return amount * eurToPlnRate;
 
             case "PLN/USD":
-                return (amount * usdToPlnRate).toFixed(2);
+                return amount * usdToPlnRate;
 
             case "USD/PLN":
-                return (amount / usdToPlnRate).toFixed(2);
+                return amount / usdToPlnRate;
 
             case "USD/EUR":
-                return (amount * usdToEurRate).toFixed(2);
+                return amount * usdToEurRate;
 
             case "EUR/USD":
-                return (amount / usdToPlnRate).toFixed(2);
+                return amount / usdToPlnRate;
 
             case "EUR/PLN":
-                return (amount / eurToPlnRate).toFixed(2);
+                return amount / eurToPlnRate;
 
             default:
-                return "";
+                return NaN;
         }
     };
 
     const onFormSubmit = (event) => {
         event.preventDefault();
         validateForm();
-        setResult(calculateResult(amount, ...exchangeRates));
+        setResult(calculateResult(amount, ...exchangeRates).toFixed(2));
     };
 
     return (
