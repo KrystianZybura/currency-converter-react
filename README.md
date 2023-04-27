@@ -4,8 +4,10 @@
 - Rates are from 26.04.2023 
 ## Demo
 Check my currency-converter here --> [Currency Converter - React](https://krystianzybura.github.io/currency-converter-react/).
-## Preview
-A qucik preview with an example showing how it works 🥰
+## Preview 
+A short preview with an example showing how it works 🥰
+
+
 ![currency-converter-animation](images/preview.gif)
 ## Technologies used in the project 😎
 - *HTML*
