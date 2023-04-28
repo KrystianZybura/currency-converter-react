@@ -69,7 +69,7 @@ const Form = ({ legend, specialText }) => {
 
             default:
                 return NaN;
-        }
+        };
     };
 
     const onFormSubmit = (event) => {
@@ -135,7 +135,7 @@ const Form = ({ legend, specialText }) => {
                             type="number"
                             placeholder="Otrzymam.."
                             value={result}
-                            onChange={() => calculateResult(amount)}
+                            readOnly
                         />
                         <span>{secondCurrencyMark}.</span>
                     </label>
