@@ -12,7 +12,7 @@ function App() {
       />
       <Main
         body={
-          <Form 
+          <Form
             legend={"Kantor"}
             specialText={"------->"}
           />
@@ -24,6 +24,6 @@ function App() {
       />
     </Container>
   );
-}
+};
 
 export default App;
