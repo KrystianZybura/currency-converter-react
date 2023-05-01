@@ -1,6 +1,7 @@
 import "./style.css";
 import WarningMessage from "./WarningMessage";
 import { exchangeRates } from "./ExchangeRates";
+import { currencies } from "./Currencies";
 import { useState } from "react";
 
 const Form = ({ legend, specialText, calculateResult }) => {
@@ -9,12 +10,6 @@ const Form = ({ legend, specialText, calculateResult }) => {
 
     const [firstCurrencyMark, setFirstCurrencyMark] = useState("zł");
     const [secondCurrencyMark, setSecondCurrencyMark] = useState("$");
-
-    const [currencies, setCurrencies] = useState([
-        { id: 1, name: "PLN", mark: "zł" },
-        { id: 2, name: "EUR", mark: "€" },
-        { id: 3, name: "USD", mark: "$" },
-    ]);
 
     const setCurrencyMark = (currency) => currencies.map(({ name, mark }) => name === currency ? mark : "");
 
