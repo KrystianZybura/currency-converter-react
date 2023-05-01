@@ -18,20 +18,19 @@ const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
 
     const onSecondSelectChange = ({ target }) => {
         setSecondCurrency(target.value);
-        setSecondCurrencyMark(setCurrencyMark(target.value));
+        setSecondCurrencyMark(() => setCurrencyMark(target.value, ...currencies));
     };
-
-    const [identicalCurrencyMarks, checkForIdenticalMarks] = useState(false);
-    const validateForm = () => checkForIdenticalMarks(firstCurrency === secondCurrency ? true : false);
 
     const [amount, setAmount] = useState("");
     const onInputChange = ({ target }) => setAmount(target.value);
 
+    const [identicalCurrencyMarks, checkForIdenticalMarks] = useState(false);
+    
     const [result, setResult] = useState("");
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        validateForm();
+        checkForIdenticalMarks(firstCurrency === secondCurrency ? true : false);
 
         const currencyPair = `${firstCurrency}/${secondCurrency}`;
         setResult(() => calculateResult(amount, currencyPair, ...exchangeRates).toFixed(2));
