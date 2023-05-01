@@ -4,18 +4,16 @@ import { exchangeRates } from "./ExchangeRates";
 import { currencies } from "./Currencies";
 import { useState } from "react";
 
-const Form = ({ legend, specialText, calculateResult }) => {
+const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
     const [firstCurrency, setFirstCurrency] = useState("PLN");
     const [secondCurrency, setSecondCurrency] = useState("USD");
 
     const [firstCurrencyMark, setFirstCurrencyMark] = useState("zł");
     const [secondCurrencyMark, setSecondCurrencyMark] = useState("$");
 
-    const setCurrencyMark = (currency) => currencies.map(({ name, mark }) => name === currency ? mark : "");
-
     const onSelectChange = ({ target }) => {
         setFirstCurrency(target.value);
-        setFirstCurrencyMark(setCurrencyMark(target.value));
+        setFirstCurrencyMark(() => setCurrencyMark(target.value, ...currencies));
     };
 
     const onSecondSelectChange = ({ target }) => {

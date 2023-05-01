@@ -6,6 +6,8 @@ import Container from "./Container";
 
 function App() {
 
+  const setCurrencyMark = (currency, ...currencies) => currencies.map(({ name, mark }) => name === currency ? mark : "");
+
   const calculateResult = (amount, currencyPair, { eurToPlnRate, usdToEurRate, usdToPlnRate }) => {
     switch (currencyPair) {
       case "PLN/EUR":
@@ -42,6 +44,7 @@ function App() {
             legend={"Kantor"}
             specialText={"------->"}
             calculateResult={calculateResult}
+            setCurrencyMark={setCurrencyMark}
           />
         }
       />
