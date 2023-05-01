@@ -3,7 +3,7 @@ import WarningMessage from "./WarningMessage";
 import { exchangeRates } from "./ExchangeRates";
 import { useState } from "react";
 
-const Form = ({ legend, specialText }) => {
+const Form = ({ legend, specialText, calculateResult }) => {
     const [firstCurrency, setFirstCurrency] = useState("PLN");
     const [secondCurrency, setSecondCurrency] = useState("USD");
 
@@ -40,37 +40,12 @@ const Form = ({ legend, specialText }) => {
 
     const [result, setResult] = useState("");
 
-    const calculateResult = (amount, { eurToPlnRate, usdToEurRate, usdToPlnRate }) => {
-        const currencyPair = `${firstCurrency}/${secondCurrency}`;
-
-        switch (currencyPair) {
-            case "PLN/EUR":
-                return amount / eurToPlnRate;
-
-            case "PLN/USD":
-                return amount / usdToPlnRate;
-
-            case "USD/PLN":
-                return amount * usdToPlnRate;
-
-            case "USD/EUR":
-                return amount * usdToEurRate;
-
-            case "EUR/USD":
-                return amount / usdToEurRate;
-
-            case "EUR/PLN":
-                return amount * eurToPlnRate;
-
-            default:
-                return NaN;
-        };
-    };
-
     const onFormSubmit = (event) => {
         event.preventDefault();
         validateForm();
-        setResult(calculateResult(amount, ...exchangeRates).toFixed(2));
+
+        const currencyPair = `${firstCurrency}/${secondCurrency}`;
+        setResult(() => calculateResult(amount, currencyPair, ...exchangeRates).toFixed(2));
     };
 
     return (
