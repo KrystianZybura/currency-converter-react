@@ -11,23 +11,12 @@ const Form = ({ legend, specialText }) => {
     const [secondCurrencyMark, setSecondCurrencyMark] = useState("$");
 
     const [currencies, setCurrencies] = useState([
-        { id: 1, name: "PLN", Mark: "zł" },
-        { id: 2, name: "EUR", Mark: "€" },
-        { id: 3, name: "USD", Mark: "$" },
+        { id: 1, name: "PLN", mark: "zł" },
+        { id: 2, name: "EUR", mark: "€" },
+        { id: 3, name: "USD", mark: "$" },
     ]);
 
-    const setCurrencyMark = (currency) => {
-        switch (currency) {
-            case "EUR":
-                return "€";
-
-            case "USD":
-                return "$";
-
-            default:
-                return "zł";
-        };
-    };
+    const setCurrencyMark = (currency) => currencies.map(({ name, mark }) => name === currency ? mark : "");
 
     const onSelectChange = ({ target }) => {
         setFirstCurrency(target.value);
