@@ -8,7 +8,13 @@ const Form = ({ legend, specialText }) => {
     const [secondCurrency, setSecondCurrency] = useState("USD");
 
     const [firstCurrencyMark, setFirstCurrencyMark] = useState("zł");
-    const [secondCurrencyMark, setSecondCurrencyMark] = useState("€");
+    const [secondCurrencyMark, setSecondCurrencyMark] = useState("$");
+
+    const [currencies, setCurrencies] = useState([
+        { id: 1, name: "PLN", Mark: "zł" },
+        { id: 2, name: "EUR", Mark: "€" },
+        { id: 3, name: "USD", Mark: "$" },
+    ]);
 
     const setCurrencyMark = (currency) => {
         switch (currency) {
@@ -91,9 +97,7 @@ const Form = ({ legend, specialText }) => {
                                 value={firstCurrency}
                                 onChange={onSelectChange}
                             >
-                                <option>PLN</option>
-                                <option>EUR</option>
-                                <option>USD</option>
+                                {currencies.map(({ name }) => <option>{`${name}`}</option>)}
                             </select>
                         </label>
                         <label>
@@ -104,9 +108,7 @@ const Form = ({ legend, specialText }) => {
                                 value={secondCurrency}
                                 onChange={onSecondSelectChange}
                             >
-                                <option>USD</option>
-                                <option>EUR</option>
-                                <option>PLN</option>
+                                {currencies.map(({ name }) => <option>{`${name}`}</option>).reverse()}
                             </select>
                         </label>
                     </p>
