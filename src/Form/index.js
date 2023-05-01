@@ -22,15 +22,16 @@ const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
     };
 
     const [amount, setAmount] = useState("");
+
     const onInputChange = ({ target }) => setAmount(target.value);
 
-    const [identicalCurrencyMarks, checkForIdenticalMarks] = useState(false);
-    
+    const [validatedForm, setValidation] = useState(true);
+
     const [result, setResult] = useState("");
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        checkForIdenticalMarks(firstCurrency === secondCurrency ? true : false);
+        setValidation(firstCurrency !== secondCurrency ? true : false);
 
         const currencyPair = `${firstCurrency}/${secondCurrency}`;
         setResult(() => calculateResult(amount, currencyPair, ...exchangeRates).toFixed(2));
@@ -94,7 +95,7 @@ const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
                         <span>{secondCurrencyMark}.</span>
                     </label>
                 </p>
-                {identicalCurrencyMarks === true ? <WarningMessage /> : ""}
+                {validatedForm === true ? "" : <WarningMessage />}
                 <p className="form__paragraph">
                     <button className="form__button">Przelicz!</button>
                 </p>
