@@ -1,8 +1,8 @@
-import "./style.css";
 import WarningMessage from "./WarningMessage";
 import { exchangeRates } from "./ExchangeRates";
 import { currencies } from "./Currencies";
 import { useState } from "react";
+import "./style.css";
 
 const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
     const [firstCurrency, setFirstCurrency] = useState("PLN");
