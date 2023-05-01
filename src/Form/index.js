@@ -86,7 +86,7 @@ const Form = ({ legend, specialText }) => {
                                 value={firstCurrency}
                                 onChange={onSelectChange}
                             >
-                                {currencies.map(({ name }) => <option>{`${name}`}</option>)}
+                                {currencies.map(({ id, name }) => <option key={id}>{`${name}`}</option>)}
                             </select>
                         </label>
                         <label>
@@ -97,7 +97,7 @@ const Form = ({ legend, specialText }) => {
                                 value={secondCurrency}
                                 onChange={onSecondSelectChange}
                             >
-                                {currencies.map(({ name }) => <option>{`${name}`}</option>).reverse()}
+                                {currencies.map(({ id, name }) => <option key={id}>{`${name}`}</option>).reverse()}
                             </select>
                         </label>
                     </p>
