@@ -24,13 +24,9 @@ const Form = ({ legend, specialText, calculateResult }) => {
     };
 
     const [identicalCurrencyMarks, checkForIdenticalMarks] = useState(false);
-
-    const validateForm = () => {
-        checkForIdenticalMarks(firstCurrency === secondCurrency ? true : false);
-    };
+    const validateForm = () => checkForIdenticalMarks(firstCurrency === secondCurrency ? true : false);
 
     const [amount, setAmount] = useState("");
-
     const onInputChange = ({ target }) => setAmount(target.value);
 
     const [result, setResult] = useState("");
