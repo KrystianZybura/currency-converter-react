@@ -6,9 +6,9 @@ import "./style.css";
 
 const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
     const [firstCurrency, setFirstCurrency] = useState("PLN");
-    const [secondCurrency, setSecondCurrency] = useState("USD");
-
     const [firstCurrencyMark, setFirstCurrencyMark] = useState("zł");
+   
+    const [secondCurrency, setSecondCurrency] = useState("USD");
     const [secondCurrencyMark, setSecondCurrencyMark] = useState("$");
 
     const onSelectChange = ({ target }) => {
