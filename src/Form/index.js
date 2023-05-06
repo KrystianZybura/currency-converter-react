@@ -7,7 +7,7 @@ import "./style.css";
 const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
     const [firstCurrency, setFirstCurrency] = useState("PLN");
     const [firstCurrencyMark, setFirstCurrencyMark] = useState("zł");
-   
+
     const [secondCurrency, setSecondCurrency] = useState("USD");
     const [secondCurrencyMark, setSecondCurrencyMark] = useState("$");
 
@@ -50,7 +50,13 @@ const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
                                 value={firstCurrency}
                                 onChange={onSelectChange}
                             >
-                                {currencies.map(({ id, name }) => <option key={id}>{`${name}`}</option>)}
+                                {
+                                    currencies.map(({ id, name }) =>
+                                        <option key={id}>
+                                            {name}
+                                        </option>
+                                    )
+                                }
                             </select>
                         </label>
                         <label>
@@ -61,7 +67,13 @@ const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
                                 value={secondCurrency}
                                 onChange={onSecondSelectChange}
                             >
-                                {currencies.map(({ id, name }) => <option key={id}>{`${name}`}</option>).reverse()}
+                                {
+                                    currencies.map(({ id, name }) =>
+                                        <option key={id}>
+                                            {name}
+                                        </option>
+                                    ).reverse()
+                                }
                             </select>
                         </label>
                     </p>
