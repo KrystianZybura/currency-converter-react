@@ -6,7 +6,11 @@ import { getCurrencyMark } from "./GetCurrencyMark";
 import { useState } from "react";
 import "./style.css";
 
-const Form = ({ legend, specialText}) => {
+const Form = ({ legend, specialText }) => {
+    const [amount, setAmount] = useState("");
+    const [validatedForm, setValidation] = useState(true);
+    const [result, setResult] = useState("");
+
     const [inputCurrency, setInputCurrency] = useState("PLN");
     const [inputCurrencyMark, setInputCurrencyMark] = useState("zł");
 
@@ -23,17 +27,11 @@ const Form = ({ legend, specialText}) => {
         setOutputCurrencyMark(() => getCurrencyMark(target.value, ...currencies));
     };
 
-    const [amount, setAmount] = useState("");
-
     const onInputChange = ({ target }) => setAmount(target.value);
-
-    const [validatedForm, setValidation] = useState(true);
-
-    const [result, setResult] = useState("");
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        setValidation(inputCurrency !== outputCurrency ? true : false);
+        setValidation(inputCurrency !== outputCurrency);
 
         const currencyPair = `${inputCurrency}/${outputCurrency}`;
         setResult(() => calculateResult(amount, currencyPair, ...exchangeRates).toFixed(2));
@@ -109,7 +107,7 @@ const Form = ({ legend, specialText}) => {
                         <span>{outputCurrencyMark}.</span>
                     </label>
                 </p>
-                {validatedForm === true ? "" : <WarningMessage />}
+                {validatedForm ? "" : <WarningMessage />}
                 <p className="form__paragraph">
                     <button className="form__button">Przelicz!</button>
                 </p>
