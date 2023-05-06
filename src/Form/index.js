@@ -8,8 +8,8 @@ const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
     const [inputCurrency, setinputCurrency] = useState("PLN");
     const [inputCurrencyMark, setinputCurrencyMark] = useState("zł");
 
-    const [secondCurrency, setSecondCurrency] = useState("USD");
-    const [secondCurrencyMark, setSecondCurrencyMark] = useState("$");
+    const [outputCurrency, setoutputCurrency] = useState("USD");
+    const [outputCurrencyMark, setoutputCurrencyMark] = useState("$");
 
     const onSelectChange = ({ target }) => {
         setinputCurrency(target.value);
@@ -17,8 +17,8 @@ const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
     };
 
     const onSecondSelectChange = ({ target }) => {
-        setSecondCurrency(target.value);
-        setSecondCurrencyMark(() => setCurrencyMark(target.value, ...currencies));
+        setoutputCurrency(target.value);
+        setoutputCurrencyMark(() => setCurrencyMark(target.value, ...currencies));
     };
 
     const [amount, setAmount] = useState("");
@@ -31,9 +31,9 @@ const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        setValidation(inputCurrency !== secondCurrency ? true : false);
+        setValidation(inputCurrency !== outputCurrency ? true : false);
 
-        const currencyPair = `${inputCurrency}/${secondCurrency}`;
+        const currencyPair = `${inputCurrency}/${outputCurrency}`;
         setResult(() => calculateResult(amount, currencyPair, ...exchangeRates).toFixed(2));
     };
 
@@ -63,8 +63,8 @@ const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
                             <span className="form__specialText">{specialText}</span>
                             <select
                                 className="form__select"
-                                name="form__selectSecondCurrency"
-                                value={secondCurrency}
+                                name="form__selectoutputCurrency"
+                                value={outputCurrency}
                                 onChange={onSecondSelectChange}
                             >
                                 {
@@ -104,7 +104,7 @@ const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
                             value={result}
                             readOnly
                         />
-                        <span>{secondCurrencyMark}.</span>
+                        <span>{outputCurrencyMark}.</span>
                     </label>
                 </p>
                 {validatedForm === true ? "" : <WarningMessage />}
