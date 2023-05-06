@@ -8,7 +8,7 @@ import "./style.css";
 
 const Form = ({ legend, specialText }) => {
     const [amount, setAmount] = useState("");
-    const [validatedForm, setValidation] = useState(true);
+    const [isFormValid, setIsFormValid] = useState(true);
     const [result, setResult] = useState("");
 
     const [inputCurrency, setInputCurrency] = useState("PLN");
@@ -31,7 +31,7 @@ const Form = ({ legend, specialText }) => {
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        setValidation(inputCurrency !== outputCurrency);
+        setIsFormValid(inputCurrency !== outputCurrency);
 
         const currencyPair = `${inputCurrency}/${outputCurrency}`;
         setResult(() => calculateResult(amount, currencyPair, ...exchangeRates).toFixed(2));
@@ -107,7 +107,7 @@ const Form = ({ legend, specialText }) => {
                         <span>{outputCurrencyMark}.</span>
                     </label>
                 </p>
-                {validatedForm ? "" : <WarningMessage />}
+                {isFormValid ? "" : <WarningMessage />}
                 <p className="form__paragraph">
                     <button className="form__button">Przelicz!</button>
                 </p>
