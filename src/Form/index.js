@@ -5,15 +5,15 @@ import { useState } from "react";
 import "./style.css";
 
 const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
-    const [firstCurrency, setFirstCurrency] = useState("PLN");
-    const [firstCurrencyMark, setFirstCurrencyMark] = useState("zł");
+    const [inputCurrency, setinputCurrency] = useState("PLN");
+    const [inputCurrencyMark, setinputCurrencyMark] = useState("zł");
 
     const [secondCurrency, setSecondCurrency] = useState("USD");
     const [secondCurrencyMark, setSecondCurrencyMark] = useState("$");
 
     const onSelectChange = ({ target }) => {
-        setFirstCurrency(target.value);
-        setFirstCurrencyMark(() => setCurrencyMark(target.value, ...currencies));
+        setinputCurrency(target.value);
+        setinputCurrencyMark(() => setCurrencyMark(target.value, ...currencies));
     };
 
     const onSecondSelectChange = ({ target }) => {
@@ -31,9 +31,9 @@ const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        setValidation(firstCurrency !== secondCurrency ? true : false);
+        setValidation(inputCurrency !== secondCurrency ? true : false);
 
-        const currencyPair = `${firstCurrency}/${secondCurrency}`;
+        const currencyPair = `${inputCurrency}/${secondCurrency}`;
         setResult(() => calculateResult(amount, currencyPair, ...exchangeRates).toFixed(2));
     };
 
@@ -46,8 +46,8 @@ const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
                         <label>
                             <select
                                 className="form__select"
-                                name="form__selectFirstCurrency"
-                                value={firstCurrency}
+                                name="form__selectinputCurrency"
+                                value={inputCurrency}
                                 onChange={onSelectChange}
                             >
                                 {
@@ -91,7 +91,7 @@ const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
                             value={amount}
                             onChange={onInputChange}
                         />
-                        <span>{firstCurrencyMark}.</span>
+                        <span>{inputCurrencyMark}.</span>
                     </label>
                 </p>
                 <p>
