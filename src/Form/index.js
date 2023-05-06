@@ -5,20 +5,20 @@ import { useState } from "react";
 import "./style.css";
 
 const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
-    const [inputCurrency, setinputCurrency] = useState("PLN");
-    const [inputCurrencyMark, setinputCurrencyMark] = useState("zł");
+    const [inputCurrency, setInputCurrency] = useState("PLN");
+    const [inputCurrencyMark, setInputCurrencyMark] = useState("zł");
 
-    const [outputCurrency, setoutputCurrency] = useState("USD");
-    const [outputCurrencyMark, setoutputCurrencyMark] = useState("$");
+    const [outputCurrency, setOutputCurrency] = useState("USD");
+    const [outputCurrencyMark, setOutputCurrencyMark] = useState("$");
 
     const onSelectChange = ({ target }) => {
-        setinputCurrency(target.value);
-        setinputCurrencyMark(() => setCurrencyMark(target.value, ...currencies));
+        setInputCurrency(target.value);
+        setInputCurrencyMark(() => setCurrencyMark(target.value, ...currencies));
     };
 
     const onSecondSelectChange = ({ target }) => {
-        setoutputCurrency(target.value);
-        setoutputCurrencyMark(() => setCurrencyMark(target.value, ...currencies));
+        setOutputCurrency(target.value);
+        setOutputCurrencyMark(() => setCurrencyMark(target.value, ...currencies));
     };
 
     const [amount, setAmount] = useState("");
