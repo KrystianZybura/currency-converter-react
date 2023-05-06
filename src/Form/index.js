@@ -19,12 +19,12 @@ const Form = ({ legend, specialText }) => {
 
     const onInputCurrencyChange = ({ target }) => {
         setInputCurrency(target.value);
-        setInputCurrencyMark(() => getCurrencyMark(target.value, ...currencies));
+        setInputCurrencyMark(getCurrencyMark(target.value, ...currencies));
     };
 
     const onOutputCurrencyChange = ({ target }) => {
         setOutputCurrency(target.value);
-        setOutputCurrencyMark(() => getCurrencyMark(target.value, ...currencies));
+        setOutputCurrencyMark(getCurrencyMark(target.value, ...currencies));
     };
 
     const onInputChange = ({ target }) => setAmount(target.value);
@@ -34,7 +34,7 @@ const Form = ({ legend, specialText }) => {
         setIsFormValid(inputCurrency !== outputCurrency);
 
         const currencyPair = `${inputCurrency}/${outputCurrency}`;
-        setResult(() => calculateResult(amount, currencyPair, ...exchangeRates).toFixed(2));
+        setResult(calculateResult(amount, currencyPair, ...exchangeRates));
     };
 
     return (
@@ -101,7 +101,7 @@ const Form = ({ legend, specialText }) => {
                             className="form__input"
                             type="number"
                             placeholder="Otrzymam.."
-                            value={result}
+                            value={result.toFixed()}
                             readOnly
                         />
                         <span>{outputCurrencyMark}.</span>
