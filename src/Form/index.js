@@ -1,10 +1,12 @@
 import WarningMessage from "./WarningMessage";
 import { exchangeRates } from "./ExchangeRates";
 import { currencies } from "./Currencies";
+import { calculateResult } from "./CalculateResult";
+import { getCurrencyMark } from "./GetCurrencyMark";
 import { useState } from "react";
 import "./style.css";
 
-const Form = ({ legend, specialText, calculateResult, getCurrencyMark }) => {
+const Form = ({ legend, specialText}) => {
     const [inputCurrency, setInputCurrency] = useState("PLN");
     const [inputCurrencyMark, setInputCurrencyMark] = useState("zł");
 
