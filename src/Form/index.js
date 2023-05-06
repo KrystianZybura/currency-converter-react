@@ -4,7 +4,7 @@ import { currencies } from "./Currencies";
 import { useState } from "react";
 import "./style.css";
 
-const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
+const Form = ({ legend, specialText, calculateResult, getCurrencyMark }) => {
     const [inputCurrency, setInputCurrency] = useState("PLN");
     const [inputCurrencyMark, setInputCurrencyMark] = useState("zł");
 
@@ -13,12 +13,12 @@ const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
 
     const onInputCurrencyChange = ({ target }) => {
         setInputCurrency(target.value);
-        setInputCurrencyMark(() => setCurrencyMark(target.value, ...currencies));
+        setInputCurrencyMark(() => getCurrencyMark(target.value, ...currencies));
     };
 
     const onOutputCurrencyChange = ({ target }) => {
         setOutputCurrency(target.value);
-        setOutputCurrencyMark(() => setCurrencyMark(target.value, ...currencies));
+        setOutputCurrencyMark(() => getCurrencyMark(target.value, ...currencies));
     };
 
     const [amount, setAmount] = useState("");
