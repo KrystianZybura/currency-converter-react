@@ -11,12 +11,12 @@ const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
     const [outputCurrency, setOutputCurrency] = useState("USD");
     const [outputCurrencyMark, setOutputCurrencyMark] = useState("$");
 
-    const onSelectChange = ({ target }) => {
+    const onInputCurrencyChange = ({ target }) => {
         setInputCurrency(target.value);
         setInputCurrencyMark(() => setCurrencyMark(target.value, ...currencies));
     };
 
-    const onSecondSelectChange = ({ target }) => {
+    const onOutputCurrencyChange = ({ target }) => {
         setOutputCurrency(target.value);
         setOutputCurrencyMark(() => setCurrencyMark(target.value, ...currencies));
     };
@@ -48,7 +48,7 @@ const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
                                 className="form__select"
                                 name="form__selectinputCurrency"
                                 value={inputCurrency}
-                                onChange={onSelectChange}
+                                onChange={onInputCurrencyChange}
                             >
                                 {
                                     currencies.map(({ id, name }) =>
@@ -65,7 +65,7 @@ const Form = ({ legend, specialText, calculateResult, setCurrencyMark }) => {
                                 className="form__select"
                                 name="form__selectoutputCurrency"
                                 value={outputCurrency}
-                                onChange={onSecondSelectChange}
+                                onChange={onOutputCurrencyChange}
                             >
                                 {
                                     currencies.map(({ id, name }) =>
