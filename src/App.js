@@ -50,7 +50,7 @@ function App() {
       />
       <Footer
         copyright={"Copyright © 2023 "}
-        exampleMail={"Example_email@gmail.com"}
+        mail={"Example_email@gmail.com"}
       />
     </Container>
   );
