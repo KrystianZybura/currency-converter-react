@@ -101,7 +101,7 @@ const Form = ({ legend, specialText }) => {
                             className="form__input"
                             type="number"
                             placeholder="Otrzymam.."
-                            value={result.toFixed()}
+                            value={result ? result.toFixed(2) : ""}
                             readOnly
                         />
                         <span>{outputCurrencyMark}.</span>
