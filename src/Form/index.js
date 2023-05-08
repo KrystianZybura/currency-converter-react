@@ -14,25 +14,25 @@ const Form = ({ legend, specialText }) => {
     const [inputCurrency, setInputCurrency] = useState([
         { id: 1, name: "PLN", mark: "zł" }
     ]);
-    
+
     const [outputCurrency, setOutputCurrency] = useState([
         { id: 1, name: "USD", mark: "$" }
     ]);
 
+    const updateCurrency = (currency, ...currencyValues) =>
+        currencyValues.map(() => ({
+            name: currency,
+            mark: getCurrencyMark(currency, ...currencies),
+        }));
+
     const onInputCurrencyChange = ({ target }) => {
-        setInputCurrency(inputCurrency.map(() => ({
-            name: target.value,
-            mark: getCurrencyMark(target.value, ...currencies),
-        })));
+        setInputCurrency(updateCurrency(target.value, inputCurrency));
         setResult("");
         setIsFormValid(true);
     };
 
     const onOutputCurrencyChange = ({ target }) => {
-        setOutputCurrency(outputCurrency.map(() => ({
-            name: target.value,
-            mark: getCurrencyMark(target.value, ...currencies),
-        })));
+        setOutputCurrency(updateCurrency(target.value, outputCurrency));
         setResult("");
         setIsFormValid(true);
     };
