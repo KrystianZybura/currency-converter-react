@@ -110,7 +110,7 @@ const Form = ({ legend, specialText }) => {
                         <span>{outputCurrency[0].mark}.</span>
                     </label>
                 </p>
-                {isFormValid ? "" : <WarningMessage />}
+                {isFormValid ? null : <WarningMessage />}
                 <p className="form__paragraph">
                     <button className="form__button">Przelicz!</button>
                 </p>
