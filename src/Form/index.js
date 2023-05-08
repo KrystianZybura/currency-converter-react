@@ -21,12 +21,14 @@ const Form = ({ legend, specialText }) => {
         setInputCurrency(target.value);
         setInputCurrencyMark(getCurrencyMark(target.value, ...currencies));
         setResult("");
+        setIsFormValid(true);
     };
 
     const onOutputCurrencyChange = ({ target }) => {
         setOutputCurrency(target.value);
         setOutputCurrencyMark(getCurrencyMark(target.value, ...currencies));
-        setResult("")
+        setResult("");
+        setIsFormValid(true);
     };
 
     const onInputChange = ({ target }) => setAmount(target.value);
