@@ -11,22 +11,28 @@ const Form = ({ legend, specialText }) => {
     const [isFormValid, setIsFormValid] = useState(true);
     const [result, setResult] = useState("");
 
-    const [inputCurrency, setInputCurrency] = useState("PLN");
-    const [inputCurrencyMark, setInputCurrencyMark] = useState("zł");
-
-    const [outputCurrency, setOutputCurrency] = useState("USD");
-    const [outputCurrencyMark, setOutputCurrencyMark] = useState("$");
+    const [inputCurrency, setInputCurrency] = useState([
+        { id: 1, name: "PLN", mark: "zł" }
+    ]);
+    
+    const [outputCurrency, setOutputCurrency] = useState([
+        { id: 1, name: "USD", mark: "$" }
+    ]);
 
     const onInputCurrencyChange = ({ target }) => {
-        setInputCurrency(target.value);
-        setInputCurrencyMark(getCurrencyMark(target.value, ...currencies));
+        setInputCurrency(inputCurrency.map(() => ({
+            name: target.value,
+            mark: getCurrencyMark(target.value, ...currencies),
+        })));
         setResult("");
         setIsFormValid(true);
     };
 
     const onOutputCurrencyChange = ({ target }) => {
-        setOutputCurrency(target.value);
-        setOutputCurrencyMark(getCurrencyMark(target.value, ...currencies));
+        setOutputCurrency(outputCurrency.map(() => ({
+            name: target.value,
+            mark: getCurrencyMark(target.value, ...currencies),
+        })));
         setResult("");
         setIsFormValid(true);
     };
@@ -35,9 +41,9 @@ const Form = ({ legend, specialText }) => {
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        setIsFormValid(inputCurrency !== outputCurrency);
+        setIsFormValid(inputCurrency[0].name !== outputCurrency[0].name);
 
-        const currencyPair = `${inputCurrency}/${outputCurrency}`;
+        const currencyPair = `${inputCurrency[0].name}/${outputCurrency[0].name}`;
         setResult(calculateResult(amount, currencyPair, ...exchangeRates));
     };
 
@@ -51,7 +57,7 @@ const Form = ({ legend, specialText }) => {
                             <select
                                 className="form__select"
                                 name="form__selectinputCurrency"
-                                value={inputCurrency}
+                                value={inputCurrency[0].name}
                                 onChange={onInputCurrencyChange}
                             >
                                 {
@@ -68,7 +74,7 @@ const Form = ({ legend, specialText }) => {
                             <select
                                 className="form__select"
                                 name="form__selectoutputCurrency"
-                                value={outputCurrency}
+                                value={outputCurrency[0].name}
                                 onChange={onOutputCurrencyChange}
                             >
                                 {
@@ -95,7 +101,7 @@ const Form = ({ legend, specialText }) => {
                             value={amount}
                             onChange={onInputChange}
                         />
-                        <span>{inputCurrencyMark}.</span>
+                        <span>{inputCurrency[0].mark}.</span>
                     </label>
                 </p>
                 <p>
@@ -108,7 +114,7 @@ const Form = ({ legend, specialText }) => {
                             value={result ? result.toFixed(2) : ""}
                             readOnly
                         />
-                        <span>{outputCurrencyMark}.</span>
+                        <span>{outputCurrency[0].mark}.</span>
                     </label>
                 </p>
                 {isFormValid ? "" : <WarningMessage />}
