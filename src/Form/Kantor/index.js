@@ -4,4 +4,10 @@ const currencies = [
     { id: 3, name: "USD", mark: "$" },
 ];
 
-export {currencies};
+const exchangeRates = [{
+    usdToPlnRate: 4.20,
+    eurToPlnRate: 4.61,
+    usdToEurRate: 0.91,
+}];
+
+export { currencies, exchangeRates };

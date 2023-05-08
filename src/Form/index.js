@@ -1,8 +1,7 @@
 import WarningMessage from "./WarningMessage";
-import { exchangeRates } from "./ExchangeRates";
-import { currencies } from "./Currencies";
+import { currencies, exchangeRates } from "./Kantor";
 import { calculateResult } from "./CalculateResult";
-import { getCurrencyMark } from "./GetCurrencyMark";
+import { updateCurrency } from "./GetCurrencyValues";
 import { useState } from "react";
 import "./style.css";
 
@@ -18,12 +17,6 @@ const Form = ({ legend, specialText }) => {
     const [outputCurrency, setOutputCurrency] = useState([
         { id: 1, name: "USD", mark: "$" }
     ]);
-
-    const updateCurrency = (currency, ...currencyValues) =>
-        currencyValues.map(() => ({
-            name: currency,
-            mark: getCurrencyMark(currency, ...currencies),
-        }));
 
     const onInputCurrencyChange = ({ target }) => {
         setInputCurrency(updateCurrency(target.value, inputCurrency));
