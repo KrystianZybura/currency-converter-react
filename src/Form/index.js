@@ -54,8 +54,8 @@ const Form = ({ legend, specialText }) => {
                                 onChange={onInputCurrencyChange}
                             >
                                 {
-                                    currencies.map(({ id, name }) =>
-                                        <option key={id}>
+                                    currencies.map(({ name }) =>
+                                        <option key={name}>
                                             {name}
                                         </option>
                                     )
@@ -71,8 +71,8 @@ const Form = ({ legend, specialText }) => {
                                 onChange={onOutputCurrencyChange}
                             >
                                 {
-                                    currencies.map(({ id, name }) =>
-                                        <option key={id}>
+                                    currencies.map(({ name }) =>
+                                        <option key={name}>
                                             {name}
                                         </option>
                                     )

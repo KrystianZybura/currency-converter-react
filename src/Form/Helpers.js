@@ -1,8 +1,8 @@
 
 const currencies = [
-    { id: 1, name: "PLN", mark: "zł" },
-    { id: 2, name: "USD", mark: "$" },
-    { id: 3, name: "EUR", mark: "€" },
+    { name: "PLN", mark: "zł" },
+    { name: "USD", mark: "$" },
+    { name: "EUR", mark: "€" },
 ];
 
 const exchangeRates = [{
