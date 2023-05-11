@@ -81,3 +81,9 @@
 .form__button:active {
     background-color: #260b5b;
 }
+
+.form__mark {
+    display: inline-block;
+    width: 20px;
+    margin-left: 4px;
+}

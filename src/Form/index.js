@@ -94,7 +94,7 @@ const Form = ({ legend, specialText }) => {
                             value={amount}
                             onChange={onInputChange}
                         />
-                        <span>{inputCurrency.mark}.</span>
+                        <span className="form__mark">{inputCurrency.mark}.</span>
                     </label>
                 </p>
                 <p>
@@ -107,7 +107,7 @@ const Form = ({ legend, specialText }) => {
                             value={result ? result.toFixed(2) : ""}
                             readOnly
                         />
-                        <span>{outputCurrency.mark}.</span>
+                        <span className="form__mark">{outputCurrency.mark}.</span>
                     </label>
                 </p>
                 {isFormValid ? null : <WarningMessage />}
