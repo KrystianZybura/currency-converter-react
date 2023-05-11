@@ -5,12 +5,12 @@ import { useState } from "react";
 import "./style.css";
 
 const INITIAL_INPUT_CURRENCY = currencies[0];
-const INITIAL_OUTPUT_CURRENCY = currencies[2];
+const INITIAL_OUTPUT_CURRENCY = currencies[1];
 
 const Form = ({ legend, specialText }) => {
-    const [amount, setAmount] = useState("");
+    const [amount, setAmount] = useState(undefined);
     const [isFormValid, setIsFormValid] = useState(true);
-    const [result, setResult] = useState("");
+    const [result, setResult] = useState(undefined);
 
     const [inputCurrency, setInputCurrency] = useState(INITIAL_INPUT_CURRENCY);
     const [outputCurrency, setOutputCurrency] = useState(INITIAL_OUTPUT_CURRENCY);
@@ -19,7 +19,7 @@ const Form = ({ legend, specialText }) => {
         const newInputCurrency = currencies.find(({ name }) => name === target.value);
 
         setInputCurrency(newInputCurrency);
-        setResult("");
+        setResult(undefined);
         setIsFormValid(true);
     };
 
@@ -27,7 +27,7 @@ const Form = ({ legend, specialText }) => {
         const newOutputCurrency = currencies.find(({ name }) => name === target.value);
 
         setOutputCurrency(newOutputCurrency);
-        setResult("");
+        setResult(undefined);
         setIsFormValid(true);
     };
 
