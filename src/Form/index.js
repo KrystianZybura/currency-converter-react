@@ -75,7 +75,7 @@ const Form = ({ legend, specialText }) => {
                                         <option key={id}>
                                             {name}
                                         </option>
-                                    ).reverse()
+                                    )
                                 }
                             </select>
                         </label>
