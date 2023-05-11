@@ -1,6 +1,6 @@
 import WarningMessage from "./WarningMessage";
 import { useState } from "react";
-import { currencies, exchangeRates, calculateResult } from "./Helpers";
+import { currencies, exchangeRates, calculateResult } from "./helpers";
 import "./style.css";
 
 const INITIAL_INPUT_CURRENCY = currencies[0];
