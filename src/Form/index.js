@@ -1,7 +1,6 @@
 import WarningMessage from "./WarningMessage";
-import { currencies, exchangeRates } from "./Kantor";
-import { calculateResult } from "./CalculateResult";
 import { useState } from "react";
+import { currencies, exchangeRates, calculateResult } from "./Helpers";
 import "./style.css";
 
 const INITIAL_INPUT_CURRENCY = currencies[0];
