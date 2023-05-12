@@ -11,3 +11,16 @@ html {
 .hidden {
   display: none;
 }
+
+#root {
+  font-family: 'Open Sans', sans-serif;
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+}
