@@ -44,72 +44,66 @@ const Form = ({ legend, specialText }) => {
         <form className="form" onSubmit={onFormSubmit}>
             <fieldset className="form__fieldset">
                 <legend className="form__legend">{legend}</legend>
-                <div className="form__selectContainer">
-                    <p>
-                        <label>
-                            <select
-                                className="form__select"
-                                name="form__selectinputCurrency"
-                                value={inputCurrency.name}
-                                onChange={onInputCurrencyChange}
-                            >
-                                {
-                                    currencies.map(({ name }) =>
-                                        <option key={name}>
-                                            {name}
-                                        </option>
-                                    )
-                                }
-                            </select>
-                        </label>
-                        <label>
-                            <span className="form__specialText">{specialText}</span>
-                            <select
-                                className="form__select"
-                                name="form__selectoutputCurrency"
-                                value={outputCurrency.name}
-                                onChange={onOutputCurrencyChange}
-                            >
-                                {
-                                    currencies.map(({ name }) =>
-                                        <option key={name}>
-                                            {name}
-                                        </option>
-                                    )
-                                }
-                            </select>
-                        </label>
-                    </p>
-                </div>
-                <p>
+                <p className="form__paragraph">
                     <label>
-                        <span className="form__labelText">Kwota do przeliczenia:</span>
-                        <input
-                            className="form__input"
-                            type="number"
-                            min="0"
-                            step="0.01"
-                            placeholder="Posiadam.."
-                            required
-                            value={amount}
-                            onChange={onInputChange}
-                        />
-                        <span className="form__mark">{inputCurrency.mark}.</span>
+                        <select
+                            className="form__select"
+                            name="form__selectinputCurrency"
+                            value={inputCurrency.name}
+                            onChange={onInputCurrencyChange}
+                        >
+                            {
+                                currencies.map(({ name }) =>
+                                    <option key={name}>
+                                        {name}
+                                    </option>
+                                )
+                            }
+                        </select>
+                    </label>
+                    <span className="form__specialText">{specialText}</span>
+                    <label>
+                        <select
+                            className="form__select"
+                            name="form__selectoutputCurrency"
+                            value={outputCurrency.name}
+                            onChange={onOutputCurrencyChange}
+                        >
+                            {
+                                currencies.map(({ name }) =>
+                                    <option key={name}>
+                                        {name}
+                                    </option>
+                                )
+                            }
+                        </select>
                     </label>
                 </p>
-                <p>
-                    <label>
-                        <span className="form__labelText">Kwota po przeliczeniu:</span>
-                        <input
-                            className="form__input"
-                            type="number"
-                            placeholder="Otrzymam.."
-                            value={result ? result.toFixed(2) : ""}
-                            readOnly
-                        />
-                        <span className="form__mark">{outputCurrency.mark}.</span>
-                    </label>
-                </p>
+                <label>
+                    <span className="form__labelText">Kwota do przeliczenia:</span>
+                    <input
+                        className="form__input"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        placeholder="Posiadam.."
+                        required
+                        value={amount}
+                        onChange={onInputChange}
+                    />
+                    <span className="form__mark">{inputCurrency.mark}.</span>
+                </label>
+                <label>
+                    <span className="form__labelText">Kwota po przeliczeniu:</span>
+                    <input
+                        className="form__input"
+                        type="number"
+                        placeholder="Otrzymam.."
+                        value={result ? result.toFixed(2) : ""}
+                        readOnly
+                    />
+                    <span className="form__mark">{outputCurrency.mark}.</span>
+                </label>
                 {isFormValid ? null : <WarningMessage />}
                 <p className="form__paragraph">
                     <button className="form__button">Przelicz!</button>

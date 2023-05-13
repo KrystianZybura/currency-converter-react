@@ -4,7 +4,7 @@ function App() {
   return (
     <Form
       legend={"Kantor"}
-      specialText={"------->"}
+      specialText={"-------->"}
     />
   );
 };

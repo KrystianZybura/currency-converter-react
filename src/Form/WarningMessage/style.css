@@ -1,5 +1,6 @@
 .form__warningMessage {
-    color: red;
+    color: #fd0000;
     font-size: 22px;
     text-shadow: 0px 0px 5px #200804;
+    font-weight: bold;
 }
