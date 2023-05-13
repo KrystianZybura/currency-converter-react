@@ -106,13 +106,13 @@
     }
 
     .form__select {
-        padding: 0px;
+        padding: 0 5px;
         font-size: 17px;
     }
 
     .form__specialText {
         font-size: 15px;
-        margin: 2px;
+        margin: 5px;
     }
 
     .form__labelText {
@@ -121,8 +121,8 @@
     }
 
     .form__input {
-        padding: 5px;
-        margin-top: 15px;
+        padding: 6px;
+        margin: 15px 4px;
         max-width: 170px;
     }
 
