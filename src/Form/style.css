@@ -11,8 +11,7 @@
     box-shadow: 0px 0px 12px #FF9800;
     background-color: #000000bf;
     display: grid;
-    justify-content: center;
-    margin: 0 30px;
+    justify-items: center;
     gap: 32px;
 }
 
@@ -87,4 +86,62 @@
     display: inline-block;
     width: 32px;
     font-size: 23px;
+}
+
+@media (max-width: 767px) {
+    .form__fieldset {
+        border: 2px solid #FF9800;
+        box-shadow: 0px 0px 6px #FF9800;
+        padding: 43px 30px;
+        margin: 0 30px;
+        gap: 10px;
+        margin: 10px;
+    }
+
+    .form__legend {
+        padding: 8px 16px;
+        font-weight: bold;
+        font-size: 17px;
+        width: 80px;
+    }
+
+    .form__select {
+        padding: 0px;
+        font-size: 17px;
+    }
+
+    .form__specialText {
+        font-size: 15px;
+        margin: 2px;
+    }
+
+    .form__labelText {
+        font-size: 17px;
+        margin: 0;
+    }
+
+    .form__input {
+        padding: 5px;
+        margin-top: 10px;
+        max-width: 168px;
+    }
+
+    .form__button {
+        padding: 8px;
+        font-size: 18px;
+        min-width: 130px;
+        margin-top: 10px;
+    }
+
+    .form__mark {
+        font-size: 15px;
+        width: auto;
+    }
+}
+
+@media (max-width: 444px) {
+    .form__labelText {
+        display: flex;
+        justify-items: center;
+    }
 }
