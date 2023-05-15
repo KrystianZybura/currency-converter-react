@@ -88,7 +88,7 @@ const Form = ({ legend, specialText }) => {
                         step="0.01"
                         placeholder="Posiadam.."
                         required
-                        value={amount}
+                        value={amount ?? ""}
                         onChange={onInputChange}
                     />
                     <span className="form__mark">{inputCurrency.mark}.</span>
