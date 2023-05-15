@@ -82,14 +82,15 @@
 }
 
 .form__button:hover {
-    color: #00f7ff;
-    background-color: #303030;
+    color: #ffffff;
+    background-color: #000000bf;
     outline: 1px solid #000;
+    box-shadow: 0px 0px 5px #FF9800;
     cursor: pointer;
 }
 
 .form__button:active {
-    background-color: #260b5b;
+    box-shadow: 0px 0px 15px #FF9800;
 }
 
 .form__mark {
