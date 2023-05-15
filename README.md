@@ -1,26 +1,33 @@
 # Krystian Żybura - Currency converter - React
+
 - Simple currency converter.
 - Available currencies: PLN, EUR, USD.
-- Rates are from 26.04.2023 
+- Rates are from 26.04.2023
+
 ## Demo
+
 Check my currency-converter here --> [Currency Converter - React](https://krystianzybura.github.io/currency-converter-react/).
-## Preview 
+
+## Preview
+
 A short preview with an example showing how it works 🥰
 
-
 ![currency-converter-animation](images/preview.gif)
+
 ## Technologies used in the project 😎
-- *HTML*
-- *CSS*
-- *JavaScript (ES6 + Features)*
-- *FlexBox*
-- *BEM*
-- *Immutability*
-- *React.js*
-- *Create React App*
-- *Babel*
-- *Webpack*
-- *Hooks*
+
+- _HTML_
+- _CSS_
+- _JavaScript (ES6 + Features)_
+- _FlexBox_
+- _BEM_
+- _Immutability_
+- _React.js_
+- _Create React App_
+- _Babel_
+- _Webpack_
+- _Hooks_
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
