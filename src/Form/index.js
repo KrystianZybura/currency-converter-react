@@ -26,7 +26,7 @@ const Form = ({ legend, specialText }) => {
         const newOutputCurrency = currencies.find(({ name }) => name === target.value);
 
         setOutputCurrency(newOutputCurrency);
-        setResult(undefined);
+        setResult();
         setIsFormValid(true);
     };
 
