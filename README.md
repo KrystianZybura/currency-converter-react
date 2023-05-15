@@ -15,6 +15,7 @@ A short preview with an example showing how it works 🥰
 - *JavaScript (ES6 + Features)*
 - *FlexBox*
 - *BEM*
+- *Immutability*
 - *React.js*
 - *Create React App*
 - *Babel*
