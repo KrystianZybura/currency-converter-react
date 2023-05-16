@@ -36,6 +36,10 @@
   padding: 1px 10px;
 }
 
+.form__select:hover {
+  cursor: pointer;
+}
+
 .form__select:focus-visible {
   outline: 1px solid #ff5b00;
 }
