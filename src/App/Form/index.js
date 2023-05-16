@@ -34,8 +34,6 @@ const Form = ({ legend, specialText }) => {
     setIsFormValid(true);
   };
 
-  const onInputChange = ({ target }) => setAmount(target.value);
-
   const onFormSubmit = (event) => {
     event.preventDefault();
     setIsFormValid(inputCurrency.name !== outputCurrency.name);
@@ -97,7 +95,7 @@ const Form = ({ legend, specialText }) => {
             placeholder="Posiadam.."
             required
             value={amount ?? ""}
-            onChange={onInputChange}
+            onChange={({ target }) => setAmount(target.value)}
           />
           <span className="form__mark">{inputCurrency.mark}.</span>
         </label>
