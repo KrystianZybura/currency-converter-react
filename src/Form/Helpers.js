@@ -4,41 +4,20 @@ const currencies = [
   { name: "EUR", mark: "€" },
 ];
 
-const exchangeRates = [
-  {
-    usdToPlnRate: 4.2,
-    eurToPlnRate: 4.61,
-    usdToEurRate: 0.91,
-  },
+const currencyPairsData = [
+  { pair: "EUR/PLN", exchangeRate: 4.61 },
+  { pair: "USD/PLN", exchangeRate: 4.2 },
+  { pair: "EUR/USD", exchangeRate: 1.09 },
 ];
 
-const calculateResult = (
-  amount,
-  currencyPair,
-  { eurToPlnRate, usdToEurRate, usdToPlnRate }
-) => {
-  switch (currencyPair) {
-    case "PLN/EUR":
-      return amount / eurToPlnRate;
-
-    case "PLN/USD":
-      return amount / usdToPlnRate;
-
-    case "USD/PLN":
-      return amount * usdToPlnRate;
-
-    case "USD/EUR":
-      return amount * usdToEurRate;
-
-    case "EUR/USD":
-      return amount / usdToEurRate;
-
-    case "EUR/PLN":
-      return amount * eurToPlnRate;
-
-    default:
-      return NaN;
+const calculateResult = (amount, currencyPair, currencyExchange) => {
+  if (!currencyExchange) {
+    return NaN;
   }
+
+  return currencyExchange.pair === currencyPair
+    ? amount * currencyExchange.exchangeRate
+    : amount / currencyExchange.exchangeRate;
 };
 
-export { currencies, exchangeRates, calculateResult };
+export { currencies, currencyPairsData, calculateResult };

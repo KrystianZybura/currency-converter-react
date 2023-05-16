@@ -1,6 +1,6 @@
 import WarningMessage from "./WarningMessage";
 import { useState } from "react";
-import { currencies, exchangeRates, calculateResult } from "./helpers";
+import { currencies, currencyPairsData, calculateResult } from "./helpers";
 import "./style.css";
 
 const INITIAL_INPUT_CURRENCY = currencies[0];
@@ -40,8 +40,20 @@ const Form = ({ legend, specialText }) => {
     event.preventDefault();
     setIsFormValid(inputCurrency.name !== outputCurrency.name);
 
-    const currencyPair = `${inputCurrency.name}/${outputCurrency.name}`;
-    setResult(calculateResult(amount, currencyPair, ...exchangeRates));
+    const selectedCurrencyPair = {
+      normal: `${inputCurrency.name}/${outputCurrency.name}`,
+      reversed: `${outputCurrency.name}/${inputCurrency.name}`,
+    };
+
+    const currencyExchange = currencyPairsData.find(
+      ({ pair }) =>
+        pair === selectedCurrencyPair.normal ||
+        pair === selectedCurrencyPair.reversed
+    );
+
+    setResult(
+      calculateResult(amount, selectedCurrencyPair.normal, currencyExchange)
+    );
   };
 
   return (
