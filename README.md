@@ -22,6 +22,7 @@ A short preview with an example showing how it works 🥰
 - _FlexBox_
 - _BEM_
 - _Immutability_
+- _Media queries_
 - _React.js_
 - _Create React App_
 - _Babel_
