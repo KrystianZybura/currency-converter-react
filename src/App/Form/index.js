@@ -1,6 +1,7 @@
 import WarningMessage from "./WarningMessage";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { currencies, currencyPairsData, calculateResult } from "./helpers";
+import Clock from "./Clock";
 import "./style.css";
 
 const INITIAL_INPUT_CURRENCY = currencies[0];
@@ -10,11 +11,6 @@ const Form = ({ legend, specialText }) => {
   const [amount, setAmount] = useState();
   const [isFormValid, setIsFormValid] = useState(true);
   const [result, setResult] = useState();
-  const [localDate, setLocalDate] = useState(new Date());
-
-  setInterval(() => {
-    setLocalDate(new Date());
-  }, 1000);
 
   const [inputCurrency, setInputCurrency] = useState(INITIAL_INPUT_CURRENCY);
   const [outputCurrency, setOutputCurrency] = useState(INITIAL_OUTPUT_CURRENCY);
@@ -63,7 +59,7 @@ const Form = ({ legend, specialText }) => {
     <form className="form" onSubmit={onFormSubmit}>
       <fieldset className="form__fieldset">
         <legend className="form__legend">{legend}</legend>
-        <span className="form__clock">{`${localDate}`}</span>
+        <Clock />
         <p className="form__paragraph">
           <label>
             <select

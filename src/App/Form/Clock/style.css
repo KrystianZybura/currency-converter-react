@@ -1,0 +1,6 @@
+.form__clock {
+  font-family: monospace;
+  font-size: 15px;
+  align-self: flex-end;
+  margin: -40px -50px -10px;
+}

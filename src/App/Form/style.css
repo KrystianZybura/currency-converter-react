@@ -30,13 +30,6 @@
   width: 150px;
 }
 
-.form__clock {
-  font-family: monospace;
-  font-size: 15px;
-  align-self: flex-end;
-  margin: -40px -50px -10px;
-}
-
 .form__select {
   border: 2px solid #ff9800;
   border-radius: 5px;
