@@ -4,3 +4,10 @@
   align-self: flex-end;
   margin: -40px -50px -10px;
 }
+
+@media (max-width: 768px) {
+  .form__clock {
+    margin: 0;
+    text-align: center;
+  }
+}
