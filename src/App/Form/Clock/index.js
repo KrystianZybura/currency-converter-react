@@ -11,14 +11,15 @@ const Clock = () => {
   });
 
   return (
-    <span className="form__clock">{`Dzisiaj jest ${localDate.toLocaleDateString(
-      undefined,
-      {
+    <span className="form__clock">
+      {`Dzisiaj jest 
+      ${localDate.toLocaleDateString("pl", {
         weekday: "long",
         day: "numeric",
         month: "long",
-      }
-    )}, ${localDate.toLocaleTimeString()}`}</span>
+      })}, 
+      ${localDate.toLocaleTimeString()}`}
+    </span>
   );
 };
 
