@@ -1,32 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./style.css";
 
 const Clock = () => {
-  const [localDate, setLocalDate] = useState(
-    new Date().toLocaleString("pl", {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-    })
-  );
-
-  setInterval(() => {
-    setLocalDate(
-      new Date().toLocaleString("pl", {
+  const [localDate, setLocalDate] = useState([
+    {
+      date: new Date().toLocaleDateString(undefined, {
         weekday: "long",
         day: "numeric",
         month: "long",
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-      })
-    );
-  }, 1000);
+      }),
+    },
+    {
+      time: new Date().toLocaleTimeString(),
+    },
+  ]);
 
-  return <span className="form__clock">{`Dzisiaj jest ${localDate}`}</span>;
+  useEffect(() => {
+    setInterval(() => {
+      setLocalDate(
+        localDate.map((date) => ({
+          ...date,
+          time: new Date().toLocaleTimeString(),
+        }))
+      );
+    }, 1000);
+  });
+
+  return (
+    <span className="form__clock">{`Dzisiaj jest ${localDate[0].date}, ${localDate[1].time}`}</span>
+  );
 };
 
 export default Clock;
