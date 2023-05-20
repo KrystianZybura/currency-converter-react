@@ -10,17 +10,14 @@ const Clock = () => {
     }, 1000);
   }, []);
 
-  return (
-    <span className="form__clock">
-      {`Dzisiaj jest 
-      ${localDate.toLocaleDateString("pl", {
-        weekday: "long",
-        day: "numeric",
-        month: "long",
-      })}, 
-      ${localDate.toLocaleTimeString()}`}
-    </span>
-  );
+  const currentDate = `${localDate.toLocaleDateString("pl", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  })}, 
+  ${localDate.toLocaleTimeString()}`;
+
+  return <span className="form__clock">Dzisiaj jest {currentDate}</span>;
 };
 
 export default Clock;
