@@ -1,8 +1,8 @@
 # Krystian Żybura - Currency converter - React
 
 - Simple currency converter.
-- Available currencies: PLN, EUR, USD.
-- Rates are from 26.04.2023
+- Available currencies: PLN, EUR, USD, GBP.
+- Rates are from 20.05.2023
 
 ## Demo
 
