@@ -6,12 +6,12 @@ const currencies = [
 ];
 
 const currencyPairsData = [
-  { pair: "EUR/PLN", exchangeRate: 4.61 },
-  { pair: "USD/PLN", exchangeRate: 4.2 },
-  { pair: "EUR/USD", exchangeRate: 1.09 },
-  { pair: "GBP/PLN", exchangeRate: 5.18 },
-  { pair: "GBP/EUR", exchangeRate: 1.15 },
-  { pair: "GBP/USD", exchangeRate: 1.25 },
+  { pair: "EUR/PLN", exchangeRate: 4.5381 },
+  { pair: "USD/PLN", exchangeRate: 4.1982 },
+  { pair: "EUR/USD", exchangeRate: 1.0809 },
+  { pair: "GBP/PLN", exchangeRate: 5.2251 },
+  { pair: "GBP/EUR", exchangeRate: 1.1513 },
+  { pair: "GBP/USD", exchangeRate: 1.2446 },
 ];
 
 const calculateResult = (amount, currencyPair, currencyExchange) => {
