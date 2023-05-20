@@ -8,7 +8,7 @@ const Clock = () => {
     setInterval(() => {
       setLocalDate(new Date());
     }, 1000);
-  }, [localDate]);
+  }, []);
 
   return (
     <span className="form__clock">
