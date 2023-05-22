@@ -87,7 +87,7 @@ const Form = ({ legend, specialText }) => {
             </select>
           </label>
         </p>
-        <label>
+        <label className="form__label">
           <span className="form__labelText">Kwota do przeliczenia:</span>
           <input
             className="form__input"
@@ -101,7 +101,7 @@ const Form = ({ legend, specialText }) => {
           />
           <span className="form__mark">{inputCurrency.mark}.</span>
         </label>
-        <label>
+        <label className="form__label">
           <span className="form__labelText">Kwota po przeliczeniu:</span>
           <input
             className="form__input"

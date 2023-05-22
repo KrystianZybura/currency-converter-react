@@ -54,16 +54,18 @@
   margin: 0 10px;
 }
 
-.form__labelText {
+.form__label {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  place-items: center;
+  gap: 10px;
   font-size: 20px;
-  margin-right: 5px;
 }
 
 .form__input {
   border: 2px solid #ff9800;
   border-radius: 5px;
   padding: 10px;
-  margin: 0 6px;
 }
 
 .form__input:focus-visible {
@@ -137,15 +139,9 @@
     margin: 5px;
   }
 
-  .form__labelText {
-    font-size: 17px;
-    margin: 0;
-  }
-
-  .form__input {
-    padding: 6px;
-    margin: 15px 4px;
-    max-width: 170px;
+  .form__label {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
   }
 
   .form__button {
@@ -160,9 +156,12 @@
   }
 }
 
-@media (max-width: 444px) {
-  .form__labelText {
-    display: grid;
-    place-items: center;
+@media (max-width: 340px) {
+  .form__label {
+    text-align: center;
+  }
+
+  .form__input {
+    max-width: 180px;
   }
 }
