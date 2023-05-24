@@ -21,7 +21,7 @@ const Clock = () => {
   }, []);
 
   return (
-    <span className="form__clock">
+    <span className="clock">
       Dzisiaj jest {getCurrentDateText(currentDate)}
     </span>
   );

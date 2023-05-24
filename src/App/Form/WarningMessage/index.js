@@ -1,7 +1,7 @@
 import "./style.css";
 
 const WarningMessage = () => (
-  <span className="form__warningMessage">
+  <span className="warningMessage">
     To wychodzi poza możliwości tego kantora!
   </span>
 );
