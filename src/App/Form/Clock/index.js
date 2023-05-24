@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import "./style.css";
 
+const getCurrentDateText = (currentDate) =>
+  `${currentDate.toLocaleDateString("pl", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  })}, 
+${currentDate.toLocaleTimeString()}`;
+
 const Clock = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -12,14 +20,11 @@ const Clock = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  const currentDateText = `${currentDate.toLocaleDateString("pl", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-  })}, 
-  ${currentDate.toLocaleTimeString()}`;
-
-  return <span className="form__clock">Dzisiaj jest {currentDateText}</span>;
+  return (
+    <span className="form__clock">
+      Dzisiaj jest {getCurrentDateText(currentDate)}
+    </span>
+  );
 };
 
 export default Clock;
