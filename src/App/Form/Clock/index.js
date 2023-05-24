@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./style.css";
 
 const getCurrentDateText = (currentDate) =>
-  `${currentDate.toLocaleDateString("pl", {
+  `${currentDate.toLocaleDateString(undefined, {
     weekday: "long",
     day: "numeric",
     month: "long",
