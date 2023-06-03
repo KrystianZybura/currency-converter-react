@@ -1,9 +1,7 @@
-import "./style.css";
+import { Message } from "./styled";
 
 const WarningMessage = () => (
-  <span className="warningMessage">
-    To wychodzi poza możliwości tego kantora!
-  </span>
+  <Message>To wychodzi poza możliwości tego kantora!</Message>
 );
 
 export default WarningMessage;
