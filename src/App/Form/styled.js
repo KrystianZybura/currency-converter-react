@@ -10,18 +10,17 @@ const Fieldset = styled.fieldset`
   display: grid;
   place-items: center;
   grid-template-rows: 1fr 1fr;
-  grid-gap: 6vh;
+  grid-gap: 58px;
   border: 3px solid #ff9800;
   border-radius: 20px;
   padding: 20px;
-  min-height: 67vh;
+  min-height: 660px;
   box-shadow: 0px 0px 12px #ff9800;
   background-color: #000000bf;
 
   @media (max-width: 767px) {
     border: 2px solid #ff9800;
     box-shadow: 0px 0px 6px #ff9800;
-    padding: 43px 30px;
     gap: 20px;
     margin: 0 10px;
   }
@@ -53,7 +52,7 @@ const Select = styled.select`
   color: #020e06;
   padding: 1px 10px;
 
-  @media (max-width: 767px) {
+  @media (max-width: 340px) {
     padding: 0 5px;
     font-size: 17px;
   }
@@ -86,7 +85,8 @@ const Input = styled.input`
   padding: 10px;
 
   @media (max-width: 340px) {
-    max-width: 180px;
+    max-width: 200px;
+    padding: 9px;
   }
 
   &:focus-visible {
@@ -154,7 +154,7 @@ const Wrapper = styled.div`
       @media (max-width: 767px) {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
-        padding: 10px 0;
+        margin: 10px 0;
       }
     `}
 `;
