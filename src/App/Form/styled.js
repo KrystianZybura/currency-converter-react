@@ -131,6 +131,17 @@ const Button = styled.button`
   }
 `;
 
+const Mark = styled.span`
+  display: inline-block;
+  width: 32px;
+  font-size: 23px;
+
+  @media (max-width: 767px) {
+    font-size: 18px;
+    width: auto;
+  }
+`;
+
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -146,17 +157,6 @@ const Wrapper = styled.div`
         padding: 10px 0;
       }
     `}
-`;
-
-const Mark = styled.span`
-  display: inline-block;
-  width: 32px;
-  font-size: 23px;
-
-  @media (max-width: 767px) {
-    font-size: 18px;
-    width: auto;
-  }
 `;
 
 export {
