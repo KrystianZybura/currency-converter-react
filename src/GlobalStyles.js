@@ -23,8 +23,8 @@ const GlobalStyles = createGlobalStyle`
     background-repeat: no-repeat;
     background-position: center;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    place-content: center;
+    flex-wrap: wrap;
     min-height: 100vh;
   }
 `;

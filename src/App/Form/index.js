@@ -2,7 +2,17 @@ import WarningMessage from "./WarningMessage";
 import { useState } from "react";
 import { currencies, currencyPairsData, calculateResult } from "./helpers";
 import Clock from "./Clock";
-import "./style.css";
+import {
+  StyledForm,
+  Fieldset,
+  Legend,
+  Select,
+  SpecialText,
+  Input,
+  Button,
+  Mark,
+  Wrapper,
+} from "./styled";
 
 const INITIAL_INPUT_CURRENCY = currencies[0];
 const INITIAL_OUTPUT_CURRENCY = currencies[1];
@@ -56,14 +66,13 @@ const Form = ({ legend, specialText }) => {
   };
 
   return (
-    <form className="form" onSubmit={onFormSubmit}>
-      <fieldset className="form__fieldset">
-        <legend className="form__legend">{legend}</legend>
+    <StyledForm onSubmit={onFormSubmit}>
+      <Fieldset>
+        <Legend>{legend}</Legend>
         <Clock />
-        <p className="form__paragraph">
+        <Wrapper>
           <label>
-            <select
-              className="form__select"
+            <Select
               name="form__selectinputCurrency"
               value={inputCurrency.name}
               onChange={onInputCurrencyChange}
@@ -71,12 +80,11 @@ const Form = ({ legend, specialText }) => {
               {currencies.map(({ name }) => (
                 <option key={name}>{name}</option>
               ))}
-            </select>
+            </Select>
           </label>
-          <span className="form__specialText">{specialText}</span>
+          <SpecialText>{specialText}</SpecialText>
           <label>
-            <select
-              className="form__select"
+            <Select
               name="form__selectoutputCurrency"
               value={outputCurrency.name}
               onChange={onOutputCurrencyChange}
@@ -84,40 +92,40 @@ const Form = ({ legend, specialText }) => {
               {currencies.map(({ name }) => (
                 <option key={name}>{name}</option>
               ))}
-            </select>
+            </Select>
           </label>
-        </p>
-        <label className="form__label">
-          <span>Kwota do przeliczenia:</span>
-          <input
-            className="form__input"
-            type="number"
-            min="0"
-            step="0.01"
-            placeholder="Posiadam.."
-            required
-            value={amount ?? ""}
-            onChange={({ target }) => setAmount(target.value)}
-          />
-          <span className="form__mark">{inputCurrency.mark}.</span>
+        </Wrapper>
+        <label>
+          <Wrapper breakpoint>
+            <span>Kwota do przeliczenia:</span>
+            <Input
+              type="number"
+              min="0"
+              step="0.01"
+              placeholder="Posiadam.."
+              required
+              value={amount ?? ""}
+              onChange={({ target }) => setAmount(target.value)}
+            />
+            <Mark>{inputCurrency.mark}.</Mark>
+          </Wrapper>
         </label>
-        <label className="form__label">
-          <span>Kwota po przeliczeniu:</span>
-          <input
-            className="form__input"
-            type="number"
-            placeholder="Otrzymam.."
-            value={result ? result.toFixed(2) : ""}
-            readOnly
-          />
-          <span className="form__mark">{outputCurrency.mark}.</span>
+        <label>
+          <Wrapper breakpoint>
+            <span>Kwota po przeliczeniu:</span>
+            <Input
+              type="number"
+              placeholder="Otrzymam.."
+              value={result ? result.toFixed(2) : ""}
+              readOnly
+            />
+            <Mark>{outputCurrency.mark}.</Mark>
+          </Wrapper>
         </label>
         {isFormValid ? null : <WarningMessage />}
-        <p className="form__paragraph">
-          <button className="form__button">Przelicz!</button>
-        </p>
-      </fieldset>
-    </form>
+        <Button>Przelicz!</Button>
+      </Fieldset>
+    </StyledForm>
   );
 };
 
