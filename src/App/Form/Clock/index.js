@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./style.css";
+import { StyledClock } from "./styled";
 
 const getCurrentDateText = (currentDate) =>
   `${currentDate.toLocaleDateString(undefined, {
@@ -21,9 +21,7 @@ const Clock = () => {
   }, []);
 
   return (
-    <span className="clock">
-      Dzisiaj jest {getCurrentDateText(currentDate)}
-    </span>
+    <StyledClock>Dzisiaj jest {getCurrentDateText(currentDate)}</StyledClock>
   );
 };
 
