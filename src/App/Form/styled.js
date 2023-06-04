@@ -13,9 +13,9 @@ const Fieldset = styled.fieldset`
   grid-gap: 58px;
   border: 3px solid #ff9800;
   border-radius: 20px;
+  box-shadow: 0px 0px 12px #ff9800;
   padding: 20px;
   min-height: 660px;
-  box-shadow: 0px 0px 12px #ff9800;
   background-color: #000000bf;
 
   @media (max-width: 767px) {
@@ -28,12 +28,12 @@ const Fieldset = styled.fieldset`
 
 const Legend = styled.legend`
   border: 2px solid #ff9800;
-  padding: 10px 20px;
-  color: white;
-  background-color: #161616;
   border-radius: 20px;
-  text-align: center;
   box-shadow: 0px 0px 5px #ff9800;
+  background-color: #161616;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
   font-weight: bold;
   font-size: 22px;
   width: 150px;
@@ -75,7 +75,6 @@ const SpecialText = styled.span`
 
   @media (max-width: 767px) {
     font-size: 15px;
-    margin: 5px;
   }
 `;
 
@@ -96,11 +95,11 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
+  border: 2px solid #ff9800;
+  border-radius: 10px;
   background-color: #f6f6f6;
   color: #000;
   padding: 8px;
-  border: 2px solid #ff9800;
-  border-radius: 10px;
   font-size: 21px;
   min-width: 140px;
   transition: 0.3s;
@@ -113,10 +112,10 @@ const Button = styled.button`
   }
 
   &:hover {
-    color: #fff;
-    background-color: #000000bf;
     outline: 1px solid #000;
     box-shadow: 0px 0px 5px #ff9800;
+    background-color: #000000bf;
+    color: #fff;
     cursor: pointer;
 
     &:active {
