@@ -20,6 +20,7 @@ A short preview with an example showing how it works 🥰
 - _CSS_
 - _JavaScript (ES6 + Features)_
 - _FlexBox_
+- _Grid_
 - _BEM_
 - _Immutability_
 - _Media queries_
