@@ -79,7 +79,7 @@ const SpecialText = styled.span`
   font-weight: bold;
 
   @media (max-width: 767px) {
-    font-size: 15px;
+    font-size: 18px;
   }
 `;
 
