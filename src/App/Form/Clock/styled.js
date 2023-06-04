@@ -5,7 +5,7 @@ const StyledClock = styled.span`
   font-size: 15px;
   justify-self: end;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.defaultMobile}px) {
     margin: 0 30px 20px;
     text-align: center;
     justify-self: center;
