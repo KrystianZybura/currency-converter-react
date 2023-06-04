@@ -6,8 +6,9 @@ const StyledClock = styled.span`
   justify-self: end;
 
   @media (max-width: 768px) {
-    margin-bottom: 10px;
+    margin: 0 30px 20px;
     text-align: center;
+    justify-self: center;
     word-break: break-word;
   }
 `;

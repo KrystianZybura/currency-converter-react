@@ -21,8 +21,13 @@ const Fieldset = styled.fieldset`
   @media (max-width: 767px) {
     border: 2px solid #ff9800;
     box-shadow: 0px 0px 6px #ff9800;
-    gap: 20px;
+    grid-gap: 15px;
     margin: 0 10px;
+    padding: 60px 0;
+  }
+
+  @media (max-height: 660px) {
+    min-height: 100vh;
   }
 `;
 
