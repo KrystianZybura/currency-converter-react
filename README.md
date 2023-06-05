@@ -21,7 +21,6 @@ A short preview with an example showing how it works 🥰
 - _JavaScript (ES6 + Features)_
 - _FlexBox_
 - _Grid_
-- _BEM_
 - _Immutability_
 - _Media queries_
 - _React.js_
@@ -29,6 +28,7 @@ A short preview with an example showing how it works 🥰
 - _Babel_
 - _Webpack_
 - _Hooks_
+- _Styled-Components_
 
 # Getting Started with Create React App
 
