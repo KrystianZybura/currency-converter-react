@@ -28,6 +28,7 @@ A short preview with an example showing how it works 🥰
 - _Babel_
 - _Webpack_
 - _Hooks_
+- _Custom Hooks_
 - _Styled-Components_
 
 # Getting Started with Create React App
