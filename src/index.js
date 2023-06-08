@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import GlobalStyles from "./GlobalStyles";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./Theme";
+import { theme } from "./theme";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
