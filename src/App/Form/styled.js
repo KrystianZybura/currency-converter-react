@@ -54,7 +54,6 @@ const Legend = styled.legend`
 const Select = styled.select`
   border: 2px solid ${({ theme }) => theme.colors.primaryColor};
   border-radius: 5px;
-  color: #020e06;
   padding: 1px 10px;
 
   @media (max-width: 340px) {
