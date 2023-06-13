@@ -1,5 +1,5 @@
 import WarningMessage from "./WarningMessage";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Clock from "./Clock";
 import axios from "axios";
 import getSymbolFromCurrency from "currency-symbol-map";
@@ -15,11 +15,9 @@ import {
   Wrapper,
 } from "./styled";
 
-let currencies = [
+const initialCurrencies = [
   { name: "PLN", mark: "zł" },
   { name: "USD", mark: "$" },
-  { name: "EUR", mark: "€" },
-  { name: "GBP", mark: "£" },
 ];
 
 const getProducts = async () => {
@@ -29,21 +27,33 @@ const getProducts = async () => {
   return keys;
 };
 
-const INITIAL_INPUT_CURRENCY = currencies[0];
-const INITIAL_OUTPUT_CURRENCY = currencies[1];
+const INITIAL_INPUT_CURRENCY = initialCurrencies[0];
+const INITIAL_OUTPUT_CURRENCY = initialCurrencies[1];
 
 const Form = ({ legend, specialText }) => {
   const [amount, setAmount] = useState();
   const [isFormValid, setIsFormValid] = useState(true);
   const [result, setResult] = useState();
+  const [currencies, setCurrencies] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedCurrencies = await getProducts();
+        setCurrencies(fetchedCurrencies);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const [inputCurrency, setInputCurrency] = useState(INITIAL_INPUT_CURRENCY);
   const [outputCurrency, setOutputCurrency] = useState(INITIAL_OUTPUT_CURRENCY);
 
   const onInputCurrencyChange = ({ target }) => {
-    const newInputCurrency = currencies.find(
-      ({ name }) => name === target.value
-    );
+    const newInputCurrency = currencies.find((name) => name === target.value);
 
     setInputCurrency(newInputCurrency);
     setResult();
@@ -51,9 +61,7 @@ const Form = ({ legend, specialText }) => {
   };
 
   const onOutputCurrencyChange = ({ target }) => {
-    const newOutputCurrency = currencies.find(
-      ({ name }) => name === target.value
-    );
+    const newOutputCurrency = currencies.find((name) => name === target.value);
 
     setOutputCurrency(newOutputCurrency);
     setResult();
@@ -77,8 +85,8 @@ const Form = ({ legend, specialText }) => {
               value={inputCurrency.name}
               onChange={onInputCurrencyChange}
             >
-              {currencies.map(({ name }) => (
-                <option key={name}>{name}</option>
+              {currencies.map((item) => (
+                <option key={item}>{item}</option>
               ))}
             </Select>
           </label>
@@ -89,11 +97,9 @@ const Form = ({ legend, specialText }) => {
               value={outputCurrency.name}
               onChange={onOutputCurrencyChange}
             >
-              {(async () => {
-                const currencies = await getProducts();
-                console.log(currencies);
-                currencies.map((item) => <option>{item}</option>);
-              })()}
+              {currencies.map((item) => (
+                <option key={item}>{item}</option>
+              ))}
             </Select>
           </label>
         </Wrapper>
