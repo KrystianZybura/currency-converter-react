@@ -21,7 +21,17 @@ const fetchCurrencies = async () => {
   const response = await axios.get("https://api.exchangerate.host/symbols");
   const currencies = await response.data;
   const keys = Object.keys(currencies.symbols);
+
   return keys;
+};
+
+const fetchRates = async (inputCurrency, outputCurrency) => {
+  const response = await axios.get(
+    `https://api.exchangerate.host/convert?from=${inputCurrency}&to=${outputCurrency}`
+  );
+  const rate = await response.data.result;
+
+  return rate;
 };
 
 const INITIAL_INPUT_CURRENCY = initialCurrencies[0];
@@ -47,10 +57,21 @@ const Form = ({ legend, specialText }) => {
     fetchData();
   }, []);
 
-  useEffect(() => {});
-
   const [inputCurrency, setInputCurrency] = useState(INITIAL_INPUT_CURRENCY);
   const [outputCurrency, setOutputCurrency] = useState(INITIAL_OUTPUT_CURRENCY);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedData = await fetchRates(inputCurrency, outputCurrency);
+        setRate(fetchedData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [inputCurrency, outputCurrency]);
 
   const onInputCurrencyChange = ({ target }) => {
     const newInputCurrency = currencies.find((name) => name === target.value);
@@ -70,8 +91,8 @@ const Form = ({ legend, specialText }) => {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    setIsFormValid(inputCurrency.name !== outputCurrency.name);
-    setResult();
+    setIsFormValid(inputCurrency !== outputCurrency);
+    setResult(amount * rate);
   };
 
   return (
