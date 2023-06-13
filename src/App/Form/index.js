@@ -15,10 +15,7 @@ import {
   Wrapper,
 } from "./styled";
 
-const initialCurrencies = [
-  { name: "PLN", mark: "zł" },
-  { name: "USD", mark: "$" },
-];
+const initialCurrencies = ["PLN", "USD"];
 
 const getProducts = async () => {
   const promise = await axios.get("https://api.exchangerate.host/symbols");
@@ -82,7 +79,7 @@ const Form = ({ legend, specialText }) => {
           <label>
             <Select
               name="form__selectinputCurrency"
-              value={inputCurrency.name}
+              value={inputCurrency}
               onChange={onInputCurrencyChange}
             >
               {currencies.map((item) => (
@@ -94,7 +91,7 @@ const Form = ({ legend, specialText }) => {
           <label>
             <Select
               name="form__selectoutputCurrency"
-              value={outputCurrency.name}
+              value={outputCurrency}
               onChange={onOutputCurrencyChange}
             >
               {currencies.map((item) => (
@@ -115,7 +112,7 @@ const Form = ({ legend, specialText }) => {
               value={amount ?? ""}
               onChange={({ target }) => setAmount(target.value)}
             />
-            <Mark>{inputCurrency.mark}.</Mark>
+            <Mark>{getSymbolFromCurrency(inputCurrency)}.</Mark>
           </Wrapper>
         </label>
         <label>
@@ -127,7 +124,7 @@ const Form = ({ legend, specialText }) => {
               value={result ? result.toFixed(2) : ""}
               readOnly
             />
-            <Mark>{outputCurrency.mark}.</Mark>
+            <Mark>{getSymbolFromCurrency(outputCurrency)}.</Mark>
           </Wrapper>
         </label>
         {isFormValid ? null : <WarningMessage />}
