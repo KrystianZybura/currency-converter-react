@@ -17,10 +17,10 @@ import {
 
 const initialCurrencies = ["PLN", "USD"];
 
-const getProducts = async () => {
-  const promise = await axios.get("https://api.exchangerate.host/symbols");
-  const products = await promise.data;
-  const keys = Object.keys(products.symbols);
+const fetchCurrencies = async () => {
+  const response = await axios.get("https://api.exchangerate.host/symbols");
+  const currencies = await response.data;
+  const keys = Object.keys(currencies.symbols);
   return keys;
 };
 
@@ -36,7 +36,7 @@ const Form = ({ legend, specialText }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const fetchedCurrencies = await getProducts();
+        const fetchedCurrencies = await fetchCurrencies();
         setCurrencies(fetchedCurrencies);
       } catch (error) {
         console.error(error);
@@ -68,6 +68,7 @@ const Form = ({ legend, specialText }) => {
   const onFormSubmit = (event) => {
     event.preventDefault();
     setIsFormValid(inputCurrency.name !== outputCurrency.name);
+    setResult();
   };
 
   return (
