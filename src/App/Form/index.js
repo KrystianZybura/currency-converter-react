@@ -32,9 +32,10 @@ const Form = ({ legend, specialText }) => {
   const [isFormValid, setIsFormValid] = useState(true);
   const [result, setResult] = useState();
   const [currencies, setCurrencies] = useState([]);
+  const [rate, setRate] = useState();
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCurrencies = async () => {
       try {
         const fetchedCurrencies = await fetchCurrencies();
         setCurrencies(fetchedCurrencies);
@@ -43,8 +44,10 @@ const Form = ({ legend, specialText }) => {
       }
     };
 
-    fetchData();
+    fetchCurrencies();
   }, []);
+
+  useEffect(() => {});
 
   const [inputCurrency, setInputCurrency] = useState(INITIAL_INPUT_CURRENCY);
   const [outputCurrency, setOutputCurrency] = useState(INITIAL_OUTPUT_CURRENCY);
