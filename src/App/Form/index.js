@@ -35,16 +35,16 @@ const Form = ({ legend, specialText }) => {
   const [rate, setRate] = useState();
 
   useEffect(() => {
-    const fetchCurrencies = async () => {
+    const fetchData = async () => {
       try {
-        const fetchedCurrencies = await fetchCurrencies();
-        setCurrencies(fetchedCurrencies);
+        const fetchedData = await fetchCurrencies();
+        setCurrencies(fetchedData);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchCurrencies();
+    fetchData();
   }, []);
 
   useEffect(() => {});
