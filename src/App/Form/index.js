@@ -1,7 +1,8 @@
 import WarningMessage from "./WarningMessage";
 import { useState } from "react";
-import { currencies, currencyPairsData, calculateResult } from "./helpers";
 import Clock from "./Clock";
+import axios from "axios";
+import getSymbolFromCurrency from "currency-symbol-map";
 import {
   StyledForm,
   Fieldset,
@@ -13,6 +14,20 @@ import {
   Mark,
   Wrapper,
 } from "./styled";
+
+let currencies = [
+  { name: "PLN", mark: "zł" },
+  { name: "USD", mark: "$" },
+  { name: "EUR", mark: "€" },
+  { name: "GBP", mark: "£" },
+];
+
+const getProducts = async () => {
+  const promise = await axios.get("https://api.exchangerate.host/symbols");
+  const products = await promise.data;
+  const keys = Object.keys(products.symbols);
+  return keys;
+};
 
 const INITIAL_INPUT_CURRENCY = currencies[0];
 const INITIAL_OUTPUT_CURRENCY = currencies[1];
@@ -48,21 +63,6 @@ const Form = ({ legend, specialText }) => {
   const onFormSubmit = (event) => {
     event.preventDefault();
     setIsFormValid(inputCurrency.name !== outputCurrency.name);
-
-    const selectedCurrencyPair = {
-      normal: `${inputCurrency.name}/${outputCurrency.name}`,
-      reversed: `${outputCurrency.name}/${inputCurrency.name}`,
-    };
-
-    const currencyExchange = currencyPairsData.find(
-      ({ pair }) =>
-        pair === selectedCurrencyPair.normal ||
-        pair === selectedCurrencyPair.reversed
-    );
-
-    setResult(
-      calculateResult(amount, selectedCurrencyPair.normal, currencyExchange)
-    );
   };
 
   return (
@@ -89,9 +89,11 @@ const Form = ({ legend, specialText }) => {
               value={outputCurrency.name}
               onChange={onOutputCurrencyChange}
             >
-              {currencies.map(({ name }) => (
-                <option key={name}>{name}</option>
-              ))}
+              {(async () => {
+                const currencies = await getProducts();
+                console.log(currencies);
+                currencies.map((item) => <option>{item}</option>);
+              })()}
             </Select>
           </label>
         </Wrapper>
