@@ -1,6 +1,6 @@
 import Clock from "./Clock";
 import getSymbolFromCurrency from "currency-symbol-map";
-import { useFetchedData } from "./helpers/useFetchedData";
+import { useFetchedCurrenciesData } from "./helpers/useFetchedCurrenciesData";
 import { useOnCurrencyChange } from "./helpers/useOnCurrencyChange";
 import { useCurrencyConverter } from "./helpers/useCurrencyConverter";
 import {
@@ -16,7 +16,7 @@ import {
 } from "./styled";
 
 const Form = ({ legend, specialText }) => {
-  const { currencies, rates } = useFetchedData();
+  const { currencies, rates } = useFetchedCurrenciesData();
 
   const { inputCurrency, outputCurrency, onCurrencyChange } =
     useOnCurrencyChange(currencies);

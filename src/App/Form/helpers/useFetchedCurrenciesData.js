@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const useFetchedData = () => {
+const useFetchedCurrenciesData = () => {
   const [currencies, setCurrencies] = useState([]);
   const [rates, setRates] = useState();
 
@@ -28,4 +28,4 @@ const useFetchedData = () => {
   return { currencies, rates };
 };
 
-export { useFetchedData };
+export { useFetchedCurrenciesData };
