@@ -15,8 +15,6 @@ import {
   Wrapper,
 } from "./styled";
 
-const initialCurrencies = ["PLN", "USD"];
-
 const fetchCurrencies = async () => {
   const response = await axios.get(
     "https://api.exchangerate.host/latest?base=PLN"
@@ -25,15 +23,16 @@ const fetchCurrencies = async () => {
   return currencies;
 };
 
-const INITIAL_INPUT_CURRENCY = initialCurrencies[0];
-const INITIAL_OUTPUT_CURRENCY = initialCurrencies[1];
-
 const Form = ({ legend, specialText }) => {
   const [amount, setAmount] = useState();
   const [isFormValid, setIsFormValid] = useState(true);
   const [result, setResult] = useState();
+
   const [currencies, setCurrencies] = useState([]);
   const [rates, setRates] = useState();
+
+  const [inputCurrency, setInputCurrency] = useState("PLN");
+  const [outputCurrency, setOutputCurrency] = useState("USD");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,9 +48,6 @@ const Form = ({ legend, specialText }) => {
 
     fetchData();
   }, []);
-
-  const [inputCurrency, setInputCurrency] = useState(INITIAL_INPUT_CURRENCY);
-  const [outputCurrency, setOutputCurrency] = useState(INITIAL_OUTPUT_CURRENCY);
 
   useEffect(() => {
     const fetchData = async () => {
