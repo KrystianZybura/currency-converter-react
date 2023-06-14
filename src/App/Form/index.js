@@ -1,8 +1,8 @@
 import Clock from "./Clock";
 import getSymbolFromCurrency from "currency-symbol-map";
-import { useFetchedData } from "./useFetchedData";
-import { useOnCurrencyChange } from "./useOnCurrencyChange";
-import { useOnValueChange } from "./useOnValueChange";
+import { useFetchedData } from "./helpers/useFetchedData";
+import { useOnCurrencyChange } from "./helpers/useOnCurrencyChange";
+import { useOnValueChange } from "./helpers/useOnValueChange";
 import {
   StyledForm,
   Fieldset,
