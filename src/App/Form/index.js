@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Clock from "./Clock";
-import axios from "axios";
 import getSymbolFromCurrency from "currency-symbol-map";
+import { useFetchedData } from "./useFetchedData";
 import {
   StyledForm,
   Fieldset,
@@ -14,51 +14,14 @@ import {
   Wrapper,
 } from "./styled";
 
-const fetchCurrencies = async () => {
-  const response = await axios.get(
-    "https://api.exchangerate.host/latest?base=PLN"
-  );
-  const currencies = await response.data;
-  return currencies;
-};
-
 const Form = ({ legend, specialText }) => {
   const [amount, setAmount] = useState();
   const [result, setResult] = useState();
 
-  const [currencies, setCurrencies] = useState([]);
-  const [rates, setRates] = useState();
-
   const [inputCurrency, setInputCurrency] = useState("PLN");
   const [outputCurrency, setOutputCurrency] = useState("USD");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const fetchedData = await fetchCurrencies();
-        const keys = Object.keys(fetchedData.rates);
-
-        setCurrencies(keys);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const fetchedData = await fetchCurrencies();
-        setRates(fetchedData.rates);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { currencies, rates } = useFetchedData();
 
   const onInputCurrencyChange = ({ target }) => {
     const newInputCurrency = currencies.find((name) => name === target.value);
