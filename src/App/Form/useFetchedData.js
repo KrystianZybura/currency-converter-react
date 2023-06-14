@@ -19,20 +19,8 @@ const useFetchedData = () => {
         const fetchedData = await fetchCurrencies();
         const keys = Object.keys(fetchedData.rates);
 
-        setCurrencies(keys);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const fetchedData = await fetchCurrencies();
         setRates(fetchedData.rates);
+        setCurrencies(keys);
       } catch (error) {
         console.error(error);
       }
