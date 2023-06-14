@@ -1,8 +1,8 @@
-import { useState } from "react";
 import Clock from "./Clock";
 import getSymbolFromCurrency from "currency-symbol-map";
 import { useFetchedData } from "./useFetchedData";
 import { useOnCurrencyChange } from "./useOnCurrencyChange";
+import { useOnValueChange } from "./useOnValueChange";
 import {
   StyledForm,
   Fieldset,
@@ -16,9 +16,6 @@ import {
 } from "./styled";
 
 const Form = ({ legend, specialText }) => {
-  const [amount, setAmount] = useState();
-  const [result, setResult] = useState();
-
   const { currencies, rates } = useFetchedData();
 
   const {
@@ -28,10 +25,16 @@ const Form = ({ legend, specialText }) => {
     onOutputCurrencyChange,
   } = useOnCurrencyChange(currencies);
 
+  const { amount, result, calculateResult, onAmountChange } = useOnValueChange(
+    inputCurrency,
+    outputCurrency,
+    rates
+  );
+
   const onFormSubmit = (event) => {
     event.preventDefault();
 
-    setResult((amount / rates[inputCurrency]) * rates[outputCurrency]);
+    calculateResult();
   };
 
   return (
@@ -74,7 +77,7 @@ const Form = ({ legend, specialText }) => {
               placeholder="Posiadam.."
               required
               value={amount ?? ""}
-              onChange={({ target }) => setAmount(target.value)}
+              onChange={onAmountChange}
             />
             <Mark>{getSymbolFromCurrency(inputCurrency)}.</Mark>
           </Wrapper>
