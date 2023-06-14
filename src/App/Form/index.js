@@ -2,7 +2,7 @@ import Clock from "./Clock";
 import getSymbolFromCurrency from "currency-symbol-map";
 import { useFetchedData } from "./helpers/useFetchedData";
 import { useOnCurrencyChange } from "./helpers/useOnCurrencyChange";
-import { useOnValueChange } from "./helpers/useOnValueChange";
+import { useCurrencyConverter } from "./helpers/useCurrencyConverter";
 import {
   StyledForm,
   Fieldset,
@@ -18,18 +18,11 @@ import {
 const Form = ({ legend, specialText }) => {
   const { currencies, rates } = useFetchedData();
 
-  const {
-    inputCurrency,
-    outputCurrency,
-    onInputCurrencyChange,
-    onOutputCurrencyChange,
-  } = useOnCurrencyChange(currencies);
+  const { inputCurrency, outputCurrency, onCurrencyChange } =
+    useOnCurrencyChange(currencies);
 
-  const { amount, result, calculateResult, onAmountChange } = useOnValueChange(
-    inputCurrency,
-    outputCurrency,
-    rates
-  );
+  const { amount, result, calculateResult, onAmountChange } =
+    useCurrencyConverter(inputCurrency, outputCurrency, rates);
 
   const onFormSubmit = (event) => {
     event.preventDefault();
@@ -45,9 +38,8 @@ const Form = ({ legend, specialText }) => {
         <Wrapper>
           <label>
             <Select
-              name="form__selectinputCurrency"
               value={inputCurrency}
-              onChange={onInputCurrencyChange}
+              onChange={(event) => onCurrencyChange(event, "input")}
             >
               {currencies.map((item) => (
                 <option key={item}>{item}</option>
@@ -57,9 +49,8 @@ const Form = ({ legend, specialText }) => {
           <SpecialText>{specialText}</SpecialText>
           <label>
             <Select
-              name="form__selectoutputCurrency"
               value={outputCurrency}
-              onChange={onOutputCurrencyChange}
+              onChange={(event) => onCurrencyChange(event, "output")}
             >
               {currencies.map((item) => (
                 <option key={item}>{item}</option>
