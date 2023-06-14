@@ -4,23 +4,16 @@ const useOnCurrencyChange = (currencies) => {
   const [inputCurrency, setInputCurrency] = useState("PLN");
   const [outputCurrency, setOutputCurrency] = useState("USD");
 
-  const onInputCurrencyChange = ({ target }) => {
-    const newInputCurrency = currencies.find((name) => name === target.value);
+  const onCurrencyChange = ({ target }, input) => {
+    const newCurrency = currencies.find((name) => name === target.value);
 
-    setInputCurrency(newInputCurrency);
-  };
-
-  const onOutputCurrencyChange = ({ target }) => {
-    const newOutputCurrency = currencies.find((name) => name === target.value);
-
-    setOutputCurrency(newOutputCurrency);
+    input ? setInputCurrency(newCurrency) : setOutputCurrency(newCurrency);
   };
 
   return {
     inputCurrency,
     outputCurrency,
-    onInputCurrencyChange,
-    onOutputCurrencyChange,
+    onCurrencyChange,
   };
 };
 
