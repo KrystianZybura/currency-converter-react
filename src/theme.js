@@ -4,7 +4,6 @@ const theme = {
     wrappingColor: "#ff5b00",
     buttonBackgroundColor: "#fff",
     formBackgroundColor: "#000000bf",
-    warningMessageColor: "#fd0000",
     primaryFontColor: "#fff",
     secondaryFontColor: "#000",
     specialTextColor: "#ffb700",

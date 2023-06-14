@@ -1,4 +1,3 @@
-import WarningMessage from "./WarningMessage";
 import { useState, useEffect } from "react";
 import Clock from "./Clock";
 import axios from "axios";
@@ -25,7 +24,6 @@ const fetchCurrencies = async () => {
 
 const Form = ({ legend, specialText }) => {
   const [amount, setAmount] = useState();
-  const [isFormValid, setIsFormValid] = useState(true);
   const [result, setResult] = useState();
 
   const [currencies, setCurrencies] = useState([]);
@@ -67,7 +65,6 @@ const Form = ({ legend, specialText }) => {
 
     setInputCurrency(newInputCurrency);
     setResult();
-    setIsFormValid(true);
   };
 
   const onOutputCurrencyChange = ({ target }) => {
@@ -75,12 +72,10 @@ const Form = ({ legend, specialText }) => {
 
     setOutputCurrency(newOutputCurrency);
     setResult();
-    setIsFormValid(true);
   };
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    setIsFormValid(inputCurrency !== outputCurrency);
 
     setResult((amount / rates[inputCurrency]) * rates[outputCurrency]);
   };
@@ -142,7 +137,6 @@ const Form = ({ legend, specialText }) => {
             <Mark>{getSymbolFromCurrency(outputCurrency)}.</Mark>
           </Wrapper>
         </label>
-        {isFormValid ? null : <WarningMessage />}
         <Button>Przelicz!</Button>
       </Fieldset>
     </StyledForm>
