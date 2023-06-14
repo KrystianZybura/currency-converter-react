@@ -22,7 +22,6 @@ const fetchCurrencies = async () => {
     "https://api.exchangerate.host/latest?base=PLN"
   );
   const currencies = await response.data;
-
   return currencies;
 };
 
@@ -65,7 +64,7 @@ const Form = ({ legend, specialText }) => {
     };
 
     fetchData();
-  }, [inputCurrency, outputCurrency]);
+  }, []);
 
   const onInputCurrencyChange = ({ target }) => {
     const newInputCurrency = currencies.find((name) => name === target.value);
