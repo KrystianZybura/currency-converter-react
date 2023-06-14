@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const useOnValueChange = (inputCurrency, outputCurrency, rates) => {
   const [amount, setAmount] = useState();
   const [result, setResult] = useState();
+
+  useEffect(() => {
+    setResult();
+  }, [inputCurrency, outputCurrency]);
 
   const onAmountChange = ({ target }) => setAmount(target.value);
 
