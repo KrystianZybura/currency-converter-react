@@ -18,20 +18,12 @@ import {
 const initialCurrencies = ["PLN", "USD"];
 
 const fetchCurrencies = async () => {
-  const response = await axios.get("https://api.exchangerate.host/symbols");
-  const currencies = await response.data;
-  const keys = Object.keys(currencies.symbols);
-
-  return keys;
-};
-
-const fetchRates = async (inputCurrency, outputCurrency) => {
   const response = await axios.get(
-    `https://api.exchangerate.host/convert?from=${inputCurrency}&to=${outputCurrency}`
+    "https://api.exchangerate.host/latest?base=PLN"
   );
-  const rate = await response.data.result;
+  const currencies = await response.data;
 
-  return rate;
+  return currencies;
 };
 
 const INITIAL_INPUT_CURRENCY = initialCurrencies[0];
@@ -42,13 +34,15 @@ const Form = ({ legend, specialText }) => {
   const [isFormValid, setIsFormValid] = useState(true);
   const [result, setResult] = useState();
   const [currencies, setCurrencies] = useState([]);
-  const [rate, setRate] = useState();
+  const [rates, setRates] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const fetchedData = await fetchCurrencies();
-        setCurrencies(fetchedData);
+        const keys = Object.keys(fetchedData.rates);
+
+        setCurrencies(keys);
       } catch (error) {
         console.error(error);
       }
@@ -63,8 +57,8 @@ const Form = ({ legend, specialText }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const fetchedData = await fetchRates(inputCurrency, outputCurrency);
-        setRate(fetchedData);
+        const fetchedData = await fetchCurrencies();
+        setRates(fetchedData.rates);
       } catch (error) {
         console.error(error);
       }
@@ -92,7 +86,8 @@ const Form = ({ legend, specialText }) => {
   const onFormSubmit = (event) => {
     event.preventDefault();
     setIsFormValid(inputCurrency !== outputCurrency);
-    setResult(amount * rate);
+
+    setResult((amount / rates[inputCurrency]) * rates[outputCurrency]);
   };
 
   return (
