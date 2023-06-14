@@ -2,6 +2,7 @@ import { useState } from "react";
 import Clock from "./Clock";
 import getSymbolFromCurrency from "currency-symbol-map";
 import { useFetchedData } from "./useFetchedData";
+import { useOnCurrencyChange } from "./useOnCurrencyChange";
 import {
   StyledForm,
   Fieldset,
@@ -18,24 +19,14 @@ const Form = ({ legend, specialText }) => {
   const [amount, setAmount] = useState();
   const [result, setResult] = useState();
 
-  const [inputCurrency, setInputCurrency] = useState("PLN");
-  const [outputCurrency, setOutputCurrency] = useState("USD");
-
   const { currencies, rates } = useFetchedData();
 
-  const onInputCurrencyChange = ({ target }) => {
-    const newInputCurrency = currencies.find((name) => name === target.value);
-
-    setInputCurrency(newInputCurrency);
-    setResult();
-  };
-
-  const onOutputCurrencyChange = ({ target }) => {
-    const newOutputCurrency = currencies.find((name) => name === target.value);
-
-    setOutputCurrency(newOutputCurrency);
-    setResult();
-  };
+  const {
+    inputCurrency,
+    outputCurrency,
+    onInputCurrencyChange,
+    onOutputCurrencyChange,
+  } = useOnCurrencyChange(currencies);
 
   const onFormSubmit = (event) => {
     event.preventDefault();
