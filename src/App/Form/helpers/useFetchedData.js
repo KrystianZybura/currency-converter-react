@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const fetchCurrencies = async () => {
+const fetchCurrenciesData = async () => {
   const response = await axios.get(
     "https://api.exchangerate.host/latest?base=PLN"
   );
-  const currencies = await response.data;
-  return currencies;
+  const currenciesData = await response.data;
+  return currenciesData;
 };
 
 const useFetchedData = () => {
@@ -16,7 +16,7 @@ const useFetchedData = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const fetchedData = await fetchCurrencies();
+        const fetchedData = await fetchCurrenciesData();
         const keys = Object.keys(fetchedData.rates);
 
         setRates(fetchedData.rates);
