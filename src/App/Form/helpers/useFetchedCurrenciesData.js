@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 const useFetchedCurrenciesData = () => {
   const [currencies, setCurrencies] = useState([]);
   const [rates, setRates] = useState();
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const fetchCurrenciesData = async () => {
@@ -19,13 +20,15 @@ const useFetchedCurrenciesData = () => {
         setCurrencies(currencyKeys);
       } catch (error) {
         console.error(error);
+
+        setIsError(true);
       }
     };
 
     fetchCurrenciesData();
   }, []);
 
-  return { currencies, rates };
+  return { currencies, rates, isError };
 };
 
 export { useFetchedCurrenciesData };

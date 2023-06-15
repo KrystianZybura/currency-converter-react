@@ -1,5 +1,6 @@
 import Clock from "./Clock";
 import LoadingAnimation from "./LoadingAnimation";
+import ErrorMessage from "./ErrorMessage";
 import getSymbolFromCurrency from "currency-symbol-map";
 import { useFetchedCurrenciesData } from "./helpers/useFetchedCurrenciesData";
 import { useOnCurrencyChange } from "./helpers/useOnCurrencyChange";
@@ -26,7 +27,7 @@ const Form = ({ legend, specialText }) => {
     }, 1000);
   }, []);
 
-  const { currencies, rates } = useFetchedCurrenciesData();
+  const { currencies, rates, isError } = useFetchedCurrenciesData();
 
   const { inputCurrency, outputCurrency, onCurrencyChange } =
     useOnCurrencyChange(currencies);
@@ -45,9 +46,7 @@ const Form = ({ legend, specialText }) => {
       <Fieldset>
         <Legend>{legend}</Legend>
         <Clock />
-        {isLoading ? (
-          <LoadingAnimation />
-        ) : (
+        {!isLoading && !isError && (
           <Wrapper>
             <label>
               <Select
@@ -72,6 +71,8 @@ const Form = ({ legend, specialText }) => {
             </label>
           </Wrapper>
         )}
+        {isLoading && <LoadingAnimation />}
+        {!isLoading && isError && <ErrorMessage />}
         <label>
           <Wrapper breakpoint>
             <span>Kwota do przeliczenia:</span>

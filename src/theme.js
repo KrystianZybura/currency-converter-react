@@ -7,6 +7,7 @@ const theme = {
     primaryFontColor: "#fff",
     secondaryFontColor: "#000",
     specialTextColor: "#ffb700",
+    errorMessageColor: "#01ffb9",
   },
   breakpoints: {
     defaultMobile: 767,
