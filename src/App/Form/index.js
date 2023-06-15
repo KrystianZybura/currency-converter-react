@@ -5,6 +5,7 @@ import getSymbolFromCurrency from "currency-symbol-map";
 import { useFetchedCurrenciesData } from "./helpers/useFetchedCurrenciesData";
 import { useOnCurrencyChange } from "./helpers/useOnCurrencyChange";
 import { useCurrencyConverter } from "./helpers/useCurrencyConverter";
+import { useLoadingAnimation } from "./helpers/useLoadingAnimation";
 import {
   StyledForm,
   Fieldset,
@@ -16,17 +17,8 @@ import {
   Mark,
   Wrapper,
 } from "./styled";
-import { useState, useEffect } from "react";
 
 const Form = ({ legend, specialText }) => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, []);
-
   const { currencies, rates, isError } = useFetchedCurrenciesData();
 
   const { inputCurrency, outputCurrency, onCurrencyChange } =
@@ -34,6 +26,8 @@ const Form = ({ legend, specialText }) => {
 
   const { amount, result, calculateResult, onAmountChange } =
     useCurrencyConverter(inputCurrency, outputCurrency, rates);
+
+  const isLoading = useLoadingAnimation();
 
   const onFormSubmit = (event) => {
     event.preventDefault();
