@@ -13,6 +13,7 @@ const useCurrencyConverter = (inputCurrency, outputCurrency, rates) => {
   const calculateResult = () => {
     setResult((amount / rates[inputCurrency]) * rates[outputCurrency]);
   };
+
   return { amount, result, calculateResult, onAmountChange };
 };
 
