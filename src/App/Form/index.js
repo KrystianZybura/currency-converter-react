@@ -46,6 +46,8 @@ const Form = ({ legend, specialText }) => {
       <Fieldset>
         <Legend>{legend}</Legend>
         <Clock />
+        {isLoading && <LoadingAnimation />}
+        {!isLoading && isError && <ErrorMessage />}
         {!isLoading && !isError && (
           <Wrapper>
             <label>
@@ -71,8 +73,6 @@ const Form = ({ legend, specialText }) => {
             </label>
           </Wrapper>
         )}
-        {isLoading && <LoadingAnimation />}
-        {!isLoading && isError && <ErrorMessage />}
         <label>
           <Wrapper breakpoint>
             <span>Kwota do przeliczenia:</span>
