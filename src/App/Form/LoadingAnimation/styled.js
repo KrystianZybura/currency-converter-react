@@ -12,7 +12,7 @@ const spinAnimation = keyframes`
 const LoadingContainer = styled.div`
   display: grid;
   place-items: center;
-  height: 5vh;
+  height: 50px;
 `;
 
 const Spinner = styled.div`
