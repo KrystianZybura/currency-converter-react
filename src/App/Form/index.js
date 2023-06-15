@@ -1,4 +1,5 @@
 import Clock from "./Clock";
+import LoadingAnimation from "./LoadingAnimation";
 import getSymbolFromCurrency from "currency-symbol-map";
 import { useFetchedCurrenciesData } from "./helpers/useFetchedCurrenciesData";
 import { useOnCurrencyChange } from "./helpers/useOnCurrencyChange";
@@ -14,8 +15,17 @@ import {
   Mark,
   Wrapper,
 } from "./styled";
+import { useState, useEffect } from "react";
 
 const Form = ({ legend, specialText }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
   const { currencies, rates } = useFetchedCurrenciesData();
 
   const { inputCurrency, outputCurrency, onCurrencyChange } =
@@ -35,29 +45,33 @@ const Form = ({ legend, specialText }) => {
       <Fieldset>
         <Legend>{legend}</Legend>
         <Clock />
-        <Wrapper>
-          <label>
-            <Select
-              value={inputCurrency}
-              onChange={(event) => onCurrencyChange(event, "input")}
-            >
-              {currencies.map((item) => (
-                <option key={item}>{item}</option>
-              ))}
-            </Select>
-          </label>
-          <SpecialText>{specialText}</SpecialText>
-          <label>
-            <Select
-              value={outputCurrency}
-              onChange={(event) => onCurrencyChange(event, "output")}
-            >
-              {currencies.map((item) => (
-                <option key={item}>{item}</option>
-              ))}
-            </Select>
-          </label>
-        </Wrapper>
+        {isLoading ? (
+          <LoadingAnimation />
+        ) : (
+          <Wrapper>
+            <label>
+              <Select
+                value={inputCurrency}
+                onChange={(event) => onCurrencyChange(event, "input")}
+              >
+                {currencies.map((item) => (
+                  <option key={item}>{item}</option>
+                ))}
+              </Select>
+            </label>
+            <SpecialText>{specialText}</SpecialText>
+            <label>
+              <Select
+                value={outputCurrency}
+                onChange={(event) => onCurrencyChange(event, "output")}
+              >
+                {currencies.map((item) => (
+                  <option key={item}>{item}</option>
+                ))}
+              </Select>
+            </label>
+          </Wrapper>
+        )}
         <label>
           <Wrapper breakpoint>
             <span>Kwota do przeliczenia:</span>
