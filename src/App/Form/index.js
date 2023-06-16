@@ -18,7 +18,7 @@ import {
 } from "./styled";
 
 const Form = ({ legend, specialText }) => {
-  const { currencies, rates, isLoading, isError } = useFetchedCurrenciesData();
+  const { currencies, rates, status } = useFetchedCurrenciesData();
 
   const { inputCurrency, outputCurrency, onCurrencyChange } =
     useOnCurrencyChange(currencies);
@@ -37,9 +37,9 @@ const Form = ({ legend, specialText }) => {
       <Fieldset>
         <Legend>{legend}</Legend>
         <Clock />
-        {isLoading && <LoadingAnimation />}
-        {!isLoading && isError && <ErrorMessage />}
-        {!isLoading && !isError && (
+        {status === "loading" && <LoadingAnimation />}
+        {status === "error" && <ErrorMessage />}
+        {status === "success" && (
           <Wrapper>
             <label>
               <Select
