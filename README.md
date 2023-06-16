@@ -1,8 +1,8 @@
 # Krystian Żybura - Currency converter - React
 
 - Simple currency converter.
-- Available currencies: PLN, EUR, USD, GBP.
-- Rates are from 20.05.2023
+- Around 170 available currencies from the entire world.
+- Rates are always up to date.
 
 ## Demo
 
@@ -27,9 +27,14 @@ A short preview with an example showing how it works 🥰
 - _Create React App_
 - _Babel_
 - _Webpack_
-- _Hooks_
+- _UseState Hook_
+- _UseEffect Hook_
 - _Custom Hooks_
 - _Styled-Components_
+- _Data is being fetched from public API servers_
+- _Async Functions_
+- _Axios_
+- _Currency-symbol-map_
 
 # Getting Started with Create React App
 
