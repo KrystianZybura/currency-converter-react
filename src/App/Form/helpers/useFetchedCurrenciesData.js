@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
+const CURRENCIES_API_URL = "https://api.exchangerate.host/latest?source=ecb";
+
 const sortCurrencies = (currencies) =>
   currencies.sort((a, b) => a.localeCompare(b));
 
@@ -20,9 +22,7 @@ const useFetchedCurrenciesData = () => {
   useEffect(() => {
     const fetchCurrenciesData = async () => {
       try {
-        const response = await axios.get(
-          "https://api.exchangerate.host/latest?source=ecb"
-        );
+        const response = await axios.get(CURRENCIES_API_URL);
 
         const currenciesData = await response.data.rates;
         const currencyKeys = Object.keys(currenciesData);
