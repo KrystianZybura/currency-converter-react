@@ -49,8 +49,8 @@ const Form = ({ legend, specialText }) => {
                 value={inputCurrency}
                 onChange={(event) => onCurrencyChange(event, "input")}
               >
-                {currencies.map((item) => (
-                  <option key={item}>{item}</option>
+                {currencies.map((name) => (
+                  <option key={name}>{name}</option>
                 ))}
               </Select>
             </label>
@@ -60,8 +60,8 @@ const Form = ({ legend, specialText }) => {
                 value={outputCurrency}
                 onChange={(event) => onCurrencyChange(event, "output")}
               >
-                {currencies.map((item) => (
-                  <option key={item}>{item}</option>
+                {currencies.map((name) => (
+                  <option key={name}>{name}</option>
                 ))}
               </Select>
             </label>
