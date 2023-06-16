@@ -7,7 +7,15 @@ const sortCurrencies = (currencies) =>
 const useFetchedCurrenciesData = () => {
   const [currencies, setCurrencies] = useState([]);
   const [rates, setRates] = useState();
+
+  const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
 
   useEffect(() => {
     const fetchCurrenciesData = async () => {
@@ -31,7 +39,7 @@ const useFetchedCurrenciesData = () => {
     fetchCurrenciesData();
   }, []);
 
-  return { currencies, rates, isError };
+  return { currencies, rates, isLoading, isError };
 };
 
 export { useFetchedCurrenciesData };
