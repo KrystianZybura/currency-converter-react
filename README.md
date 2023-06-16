@@ -1,7 +1,7 @@
 # Krystian Żybura - Currency converter - React
 
 - Simple currency converter.
-- Around 170 available currencies from the entire world.
+- Available 31 currencies, synchronised with ESB (European Central Bank) data.
 - Rates are always up to date.
 
 ## Demo
