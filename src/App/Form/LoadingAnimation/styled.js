@@ -12,14 +12,14 @@ const spinAnimation = keyframes`
 const LoadingContainer = styled.div`
   display: grid;
   place-items: center;
-  height: 50px;
+  height: 35px;
 `;
 
 const Spinner = styled.div`
-  width: 50px;
-  height: 50px;
-  border: 8px solid #fff;
-  border-top: 8px solid ${({ theme }) => theme.colors.primaryColor};
+  width: 35px;
+  height: 35px;
+  border: 7px solid #fff;
+  border-top: 7px solid ${({ theme }) => theme.colors.primaryColor};
   border-radius: 50%;
   animation: ${spinAnimation} 0.75s infinite linear;
 `;
