@@ -5,6 +5,7 @@ import getSymbolFromCurrency from "currency-symbol-map";
 import { useFetchedCurrenciesData } from "./helpers/useFetchedCurrenciesData";
 import { useOnCurrencyChange } from "./helpers/useOnCurrencyChange";
 import { useCurrencyConverter } from "./helpers/useCurrencyConverter";
+import { getSortedCurrencyKeys } from "./helpers/getSortedCurrencyKeys";
 import {
   StyledForm,
   Fieldset,
@@ -18,13 +19,15 @@ import {
 } from "./styled";
 
 const Form = ({ legend, specialText }) => {
-  const { currencies, rates, status } = useFetchedCurrenciesData();
+  const { currencies, status } = useFetchedCurrenciesData();
 
   const { inputCurrency, outputCurrency, onCurrencyChange } =
     useOnCurrencyChange(currencies);
 
   const { amount, result, calculateResult, onAmountChange } =
-    useCurrencyConverter(inputCurrency, outputCurrency, rates);
+    useCurrencyConverter(inputCurrency, outputCurrency, currencies);
+
+  const currencyKeys = getSortedCurrencyKeys(currencies);
 
   const onFormSubmit = (event) => {
     event.preventDefault();
@@ -46,7 +49,7 @@ const Form = ({ legend, specialText }) => {
                 value={inputCurrency}
                 onChange={(event) => onCurrencyChange(event, "input")}
               >
-                {currencies.map((name) => (
+                {currencyKeys.map((name) => (
                   <option key={name}>{name}</option>
                 ))}
               </Select>
@@ -57,7 +60,7 @@ const Form = ({ legend, specialText }) => {
                 value={outputCurrency}
                 onChange={(event) => onCurrencyChange(event, "output")}
               >
-                {currencies.map((name) => (
+                {currencyKeys.map((name) => (
                   <option key={name}>{name}</option>
                 ))}
               </Select>

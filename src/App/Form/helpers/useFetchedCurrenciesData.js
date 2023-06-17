@@ -3,13 +3,8 @@ import { useState, useEffect } from "react";
 
 const CURRENCIES_API_URL = "https://api.exchangerate.host/latest?source=ecb";
 
-const sortCurrencies = (currencies) =>
-  currencies.sort((a, b) => a.localeCompare(b));
-
 const useFetchedCurrenciesData = () => {
   const [currencies, setCurrencies] = useState([]);
-  const [rates, setRates] = useState();
-
   const [status, setStatus] = useState("loading");
 
   useEffect(() => {
@@ -19,10 +14,8 @@ const useFetchedCurrenciesData = () => {
         response && setStatus("success");
 
         const currenciesData = await response.data.rates;
-        const currencyKeys = Object.keys(currenciesData);
 
-        setRates(currenciesData);
-        setCurrencies(sortCurrencies(currencyKeys));
+        setCurrencies(currenciesData);
       } catch (error) {
         console.error(error);
         setStatus("error");
@@ -34,7 +27,7 @@ const useFetchedCurrenciesData = () => {
     }, 1000);
   }, []);
 
-  return { currencies, rates, status };
+  return { currencies, status };
 };
 
 export { useFetchedCurrenciesData };

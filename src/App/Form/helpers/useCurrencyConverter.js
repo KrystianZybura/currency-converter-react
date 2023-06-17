@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useCurrencyConverter = (inputCurrency, outputCurrency, rates) => {
+const useCurrencyConverter = (inputCurrency, outputCurrency, currencies) => {
   const [amount, setAmount] = useState();
   const [result, setResult] = useState();
 
@@ -11,7 +11,9 @@ const useCurrencyConverter = (inputCurrency, outputCurrency, rates) => {
   const onAmountChange = ({ target }) => setAmount(target.value);
 
   const calculateResult = () => {
-    setResult((amount / rates[inputCurrency]) * rates[outputCurrency]);
+    setResult(
+      (amount / currencies[inputCurrency]) * currencies[outputCurrency]
+    );
   };
 
   return { amount, result, calculateResult, onAmountChange };
