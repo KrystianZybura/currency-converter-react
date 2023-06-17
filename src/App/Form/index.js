@@ -5,7 +5,7 @@ import getSymbolFromCurrency from "currency-symbol-map";
 import { useFetchedCurrenciesData } from "./helpers/useFetchedCurrenciesData";
 import { useOnCurrencyChange } from "./helpers/useOnCurrencyChange";
 import { useCurrencyConverter } from "./helpers/useCurrencyConverter";
-import { getSortedCurrencyKeys } from "./helpers/getSortedCurrencyKeys";
+import { getCurrencyKeys } from "./helpers/getCurrencyKeys";
 import {
   StyledForm,
   Fieldset,
@@ -27,7 +27,7 @@ const Form = ({ legend, specialText }) => {
   const { amount, result, calculateResult, onAmountChange } =
     useCurrencyConverter(inputCurrency, outputCurrency, currencies);
 
-  const currencyKeys = getSortedCurrencyKeys(currencies);
+  const currencyKeys = getCurrencyKeys(currencies);
 
   const onFormSubmit = (event) => {
     event.preventDefault();
