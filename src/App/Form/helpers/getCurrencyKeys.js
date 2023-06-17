@@ -4,9 +4,7 @@ const sortCurrencyKeys = (currencies) =>
 const getCurrencyKeys = (currencies) => {
   const currencyKeys = Object.keys(currencies);
 
-  const sortedCurrencyKeys = sortCurrencyKeys(currencyKeys);
-
-  return sortedCurrencyKeys;
+  return sortCurrencyKeys(currencyKeys);
 };
 
 export { getCurrencyKeys };
