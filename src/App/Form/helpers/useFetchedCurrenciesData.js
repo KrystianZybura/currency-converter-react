@@ -22,9 +22,7 @@ const useFetchedCurrenciesData = () => {
       }
     };
 
-    setTimeout(() => {
-      fetchCurrenciesData();
-    }, 1000);
+    setTimeout(fetchCurrenciesData, 1000);
   }, []);
 
   return { currencies, status };
