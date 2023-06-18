@@ -21,13 +21,13 @@ import {
 const Form = ({ legend, specialText }) => {
   const { currencies, status } = useFetchedCurrenciesData();
 
+  const currencyKeys = getCurrencyKeys(currencies);
+
   const { inputCurrency, outputCurrency, onCurrencyChange } =
-    useOnCurrencyChange(currencies);
+    useOnCurrencyChange(currencyKeys);
 
   const { amount, result, calculateResult, onAmountChange } =
     useCurrencyConverter(inputCurrency, outputCurrency, currencies);
-
-  const currencyKeys = getCurrencyKeys(currencies);
 
   const onFormSubmit = (event) => {
     event.preventDefault();

@@ -4,28 +4,29 @@ import { useState, useEffect } from "react";
 const CURRENCIES_API_URL = "https://api.exchangerate.host/latest?source=ecb";
 
 const useFetchedCurrenciesData = () => {
-  const [currencies, setCurrencies] = useState([]);
-  const [status, setStatus] = useState("loading");
+  const [currenciesData, setCurrenciesData] = useState({
+    status: "loading",
+    currencies: {},
+  });
 
   useEffect(() => {
     const fetchCurrenciesData = async () => {
       try {
         const response = await axios.get(CURRENCIES_API_URL);
-        response && setStatus("success");
 
-        const currenciesData = await response.data.rates;
+        const currencies = await response.data.rates;
 
-        setCurrencies(currenciesData);
+        setCurrenciesData({ currencies, status: "success" });
       } catch (error) {
         console.error(error);
-        setStatus("error");
+        setCurrenciesData({ status: "error", currencies: {} });
       }
     };
 
     setTimeout(fetchCurrenciesData, 1000);
   }, []);
 
-  return { currencies, status };
+  return currenciesData;
 };
 
 export { useFetchedCurrenciesData };
