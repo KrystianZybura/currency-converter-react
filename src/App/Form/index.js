@@ -1,20 +1,21 @@
-import Clock from "./Clock";
-import LoadingAnimation from "./LoadingAnimation";
-import ErrorMessage from "./ErrorMessage";
 import getSymbolFromCurrency from "currency-symbol-map";
+
+import Clock from "./Clock";
+import ErrorMessage from "./ErrorMessage";
+import LoadingAnimation from "./LoadingAnimation";
+import { getCurrencyKeys } from "./helpers/getCurrencyKeys";
+import { useCurrencyConverter } from "./helpers/useCurrencyConverter";
 import { useFetchedCurrenciesData } from "./helpers/useFetchedCurrenciesData";
 import { useOnCurrencyChange } from "./helpers/useOnCurrencyChange";
-import { useCurrencyConverter } from "./helpers/useCurrencyConverter";
-import { getCurrencyKeys } from "./helpers/getCurrencyKeys";
 import {
-  StyledForm,
+  Button,
   Fieldset,
+  Input,
   Legend,
+  Mark,
   Select,
   SpecialText,
-  Input,
-  Button,
-  Mark,
+  StyledForm,
   Wrapper,
 } from "./styled";
 

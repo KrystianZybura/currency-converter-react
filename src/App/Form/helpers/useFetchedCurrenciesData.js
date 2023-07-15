@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const CURRENCIES_API_URL = "https://api.exchangerate.host/latest?source=ecb";
 
