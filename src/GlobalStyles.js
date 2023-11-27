@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-import background from "./background.webp";
+import background from "./assets/background.webp";
 
 const GlobalStyles = createGlobalStyle`
   html {
