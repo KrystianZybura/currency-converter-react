@@ -24,7 +24,7 @@ const Form = ({ legend, specialText }) => {
   const {
     data: currencies,
     isLoading,
-    error,
+    isError,
   } = useQuery("currencies", fetchCurrenciesData);
 
   const currencyKeys = getCurrencyKeys(currencies);
@@ -47,8 +47,8 @@ const Form = ({ legend, specialText }) => {
         <Legend>{legend}</Legend>
         <Clock />
         {isLoading && <LoadingAnimation />}
-        {error && <ErrorMessage />}
-        {!isLoading && !error && (
+        {isError && <ErrorMessage />}
+        {!isLoading && !isError && (
           <>
             <Wrapper>
               <label>
