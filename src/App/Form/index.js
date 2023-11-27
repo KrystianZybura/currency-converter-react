@@ -21,10 +21,11 @@ import {
 } from "./styled";
 
 const Form = ({ legend, specialText }) => {
-  const { data: currencies, status } = useQuery(
-    "currencies",
-    fetchCurrenciesData
-  );
+  const {
+    data: currencies,
+    isLoading,
+    error,
+  } = useQuery("currencies", fetchCurrenciesData);
 
   const currencyKeys = getCurrencyKeys(currencies);
 
@@ -45,9 +46,9 @@ const Form = ({ legend, specialText }) => {
       <Fieldset>
         <Legend>{legend}</Legend>
         <Clock />
-        {status === "loading" && <LoadingAnimation />}
-        {status === "error" && <ErrorMessage />}
-        {status === "success" && (
+        {isLoading && <LoadingAnimation />}
+        {error && <ErrorMessage />}
+        {!isLoading && !error && (
           <>
             <Wrapper>
               <label>
