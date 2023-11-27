@@ -1,11 +1,12 @@
 import getSymbolFromCurrency from "currency-symbol-map";
+import { useQuery } from "react-query";
 
 import Clock from "./Clock";
 import ErrorMessage from "./ErrorMessage";
 import LoadingAnimation from "./LoadingAnimation";
+import { fetchCurrenciesData } from "./helpers/fetchCurrenciesData";
 import { getCurrencyKeys } from "./helpers/getCurrencyKeys";
 import { useCurrencyConverter } from "./helpers/useCurrencyConverter";
-import { useFetchedCurrenciesData } from "./helpers/useFetchedCurrenciesData";
 import { useOnCurrencyChange } from "./helpers/useOnCurrencyChange";
 import {
   Button,
@@ -20,7 +21,10 @@ import {
 } from "./styled";
 
 const Form = ({ legend, specialText }) => {
-  const { currencies, status } = useFetchedCurrenciesData();
+  const { data: currencies, status } = useQuery(
+    "currencies",
+    fetchCurrenciesData
+  );
 
   const currencyKeys = getCurrencyKeys(currencies);
 

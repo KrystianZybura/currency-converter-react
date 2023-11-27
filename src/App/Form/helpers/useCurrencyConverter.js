@@ -12,8 +12,8 @@ const useCurrencyConverter = (inputCurrency, outputCurrency, currencies) => {
 
   const calculateResult = () => {
     setResult(
-      (amount / currencies[inputCurrency].value) *
-        currencies[outputCurrency].value
+      (amount / currencies.data[inputCurrency].value) *
+        currencies.data[outputCurrency].value
     );
   };
 
