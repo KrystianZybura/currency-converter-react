@@ -25,6 +25,7 @@ A short preview with an example showing how it works 🥰
 - _Media queries_
 - _React.js_
 - _Create React App_
+- _React Query_
 - _Babel_
 - _Webpack_
 - _UseState Hook_
