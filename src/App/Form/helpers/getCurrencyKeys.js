@@ -6,7 +6,7 @@ const getCurrencyKeys = (currencies) => {
     return;
   }
 
-  const currencyKeys = Object.keys(currencies.data);
+  const currencyKeys = Object.keys(currencies);
 
   return sortCurrencyKeys(currencyKeys);
 };
